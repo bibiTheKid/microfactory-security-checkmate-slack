@@ -1,0 +1,24 @@
+{
+  "name": "microfactory-security-checkmate-slack",
+  "version": "1.0.0",
+  "description": "Slack app for Microfactory warehouse security checklist",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": ["slack", "bolt", "security", "checklist"],
+  "author": "Microfactory",
+  "license": "MIT",
+  "dependencies": {
+    "@slack/bolt": "^3.17.1",
+    "dotenv": "^16.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
