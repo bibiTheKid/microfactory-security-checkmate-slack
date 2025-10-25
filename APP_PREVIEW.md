@@ -89,7 +89,10 @@ When you click on the app in the sidebar, you see the **full interactive checkli
 └─────────────────────────────────────────────┘
 ```
 
-**Key Feature:** The checklist is fully interactive! You can check items directly in the App Home without opening a modal.
+**Key Features:**
+
+- ✅ The checklist is fully interactive! You can check items directly in the App Home without opening a modal.
+- ⚡ **Auto-submit:** When you check the last item, it automatically posts to the channel - no need to click the button!
 
 ### 1. Slash Command
 
@@ -237,6 +240,7 @@ Users can:
 ### ✅ Interactive Checkboxes
 
 - **Works directly in App Home** - No modal needed!
+- **Auto-submit when all items checked** - Instant completion! ⚡
 - Real-time checkbox updates
 - Visual feedback when items are checked
 - State preserved as you check items

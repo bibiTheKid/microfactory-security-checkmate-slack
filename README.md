@@ -7,6 +7,7 @@ A beautiful Slack app for managing the security checklist when closing the Micro
 - 📋 **Interactive checklist in App Home** - Complete the checklist directly from the sidebar
 - 🎨 Beautiful UI built with Slack's Block Kit framework
 - ✅ Real-time completion tracking with checkboxes
+- ⚡ **Auto-submit when all items checked** - Automatically posts to channel when you check the last item!
 - 📊 Summary report showing completed and missing items
 - 📢 **Posts completion summary to a configurable channel for team visibility**
 - 🔔 Slash command `/security-check` for modal access
@@ -138,10 +139,11 @@ You should see:
 
 1. Look for **"Security Checkmate"** in the left sidebar under "Apps"
 2. Click on it to see the App Home with the **interactive checklist**
-3. Check off items directly in the App Home
-4. Click **"Complete ✓"** to submit
+3. Check off items directly in the App Home as you complete them
+4. **When you check the last item, it automatically submits!** ⚡
+5. Or click **"Complete ✓"** to submit manually at any time
 
-**Option 2: Via Slash Command**
+**Option 2: Via Slash Command (Modal)**
 
 1. In any Slack channel or DM, type:
 
@@ -150,16 +152,19 @@ You should see:
    ```
 
 2. A modal will open with the complete security checklist
+3. Check off items as you complete them
+4. **When you check the last item, it automatically submits!** ⚡
+5. Or click **"Complete ✓"** to submit manually at any time
 
-### Completing the Checklist
+### What Happens After Submission
 
-1. Check off each item as you complete it
-2. Click **"Complete ✓"** when done
-3. A summary message will be posted to the configured channel showing:
-   - Who completed the checklist
-   - When it was completed
-   - Which items were checked
-   - Any missing items (if applicable)
+A summary message will be posted to the configured channel showing:
+
+- Who completed the checklist
+- When it was completed
+- Which items were checked
+- Any missing items (if applicable)
+
 4. The message will be visible to everyone in the channel for accountability
 
 ### Getting Help

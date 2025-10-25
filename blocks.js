@@ -1,10 +1,9 @@
 const { checklistItems } = require("./checklist-data");
 
 /**
- * Build the Block Kit modal view for the security checklist
+ * Helper function to group checklist items by category
  */
-function buildChecklistModal() {
-  // Group items by category
+function groupItemsByCategory() {
   const categories = {};
   checklistItems.forEach((item) => {
     if (!categories[item.category]) {
@@ -12,30 +11,23 @@ function buildChecklistModal() {
     }
     categories[item.category].push(item);
   });
+  return categories;
+}
 
-  const blocks = [
-    {
-      type: "header",
-      text: {
-        type: "plain_text",
-        text: "🏭 Microfactory Security Checklist",
-        emoji: true,
-      },
-    },
-    {
-      type: "section",
-      text: {
-        type: "mrkdwn",
-        text: "*Please check all items before closing the warehouse*",
-      },
-    },
-    {
-      type: "divider",
-    },
-  ];
+/**
+ * Build checklist blocks with checkboxes
+ * @param {string} actionIdPrefix - Prefix for action_id (e.g., "checklist" or "home_checklist")
+ * @param {string} blockIdPrefix - Prefix for block_id (e.g., "category" or "home_category")
+ * @returns {Array} Array of Block Kit blocks
+ */
+function buildChecklistBlocks(actionIdPrefix, blockIdPrefix) {
+  const categories = groupItemsByCategory();
+  const blocks = [];
 
   // Add each category with its items
   Object.keys(categories).forEach((category) => {
+    const categorySlug = category.toLowerCase().replace(/\s+/g, "_");
+
     // Category header
     blocks.push({
       type: "section",
@@ -56,11 +48,11 @@ function buildChecklistModal() {
 
     blocks.push({
       type: "actions",
-      block_id: `category_${category.toLowerCase().replace(/\s+/g, "_")}`,
+      block_id: `${blockIdPrefix}_${categorySlug}`,
       elements: [
         {
           type: "checkboxes",
-          action_id: `checklist_${category.toLowerCase().replace(/\s+/g, "_")}`,
+          action_id: `${actionIdPrefix}_${categorySlug}`,
           options: options,
         },
       ],
@@ -70,6 +62,36 @@ function buildChecklistModal() {
       type: "divider",
     });
   });
+
+  return blocks;
+}
+
+/**
+ * Build the Block Kit modal view for the security checklist
+ */
+function buildChecklistModal() {
+  const blocks = [
+    {
+      type: "header",
+      text: {
+        type: "plain_text",
+        text: "🏭 Microfactory Security Checklist",
+        emoji: true,
+      },
+    },
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: "*Please check all items before closing the warehouse*",
+      },
+    },
+    {
+      type: "divider",
+    },
+    // Add the checklist blocks
+    ...buildChecklistBlocks("checklist", "category"),
+  ];
 
   return {
     type: "modal",
@@ -183,15 +205,6 @@ function buildCompletionMessage(checkedItems, userName) {
  * Build App Home view with interactive checklist
  */
 function buildAppHomeView() {
-  // Group items by category
-  const categories = {};
-  checklistItems.forEach((item) => {
-    if (!categories[item.category]) {
-      categories[item.category] = [];
-    }
-    categories[item.category].push(item);
-  });
-
   const blocks = [
     {
       type: "header",
@@ -205,52 +218,15 @@ function buildAppHomeView() {
       type: "section",
       text: {
         type: "mrkdwn",
-        text: "👋 *Welcome!* Check off each item as you complete the closing procedures.",
+        text: "Check off each item as you complete the closing procedures.",
       },
     },
     {
       type: "divider",
     },
+    // Add the checklist blocks
+    ...buildChecklistBlocks("home_checklist", "home_category"),
   ];
-
-  // Add each category with its checkboxes
-  Object.keys(categories).forEach((category) => {
-    // Category header
-    blocks.push({
-      type: "section",
-      text: {
-        type: "mrkdwn",
-        text: `*${category}*`,
-      },
-    });
-
-    // Add checkboxes for each item in the category
-    const options = categories[category].map((item) => ({
-      text: {
-        type: "mrkdwn",
-        text: item.text,
-      },
-      value: item.id,
-    }));
-
-    blocks.push({
-      type: "actions",
-      block_id: `home_category_${category.toLowerCase().replace(/\s+/g, "_")}`,
-      elements: [
-        {
-          type: "checkboxes",
-          action_id: `home_checklist_${category
-            .toLowerCase()
-            .replace(/\s+/g, "_")}`,
-          options: options,
-        },
-      ],
-    });
-
-    blocks.push({
-      type: "divider",
-    });
-  });
 
   // Add submit button
   blocks.push({

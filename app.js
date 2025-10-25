@@ -5,6 +5,7 @@ const {
   buildCompletionMessage,
   buildHelpMessage,
 } = require("./blocks");
+const { checklistItems } = require("./checklist-data");
 
 // Initialize the Bolt app
 const app = new App({
@@ -14,6 +15,65 @@ const app = new App({
   appToken: process.env.SLACK_APP_TOKEN,
   port: process.env.PORT || 3000,
 });
+
+/**
+ * Shared function to post completion message to channel
+ * @param {Array} checkedItems - Array of checked item IDs
+ * @param {string} userId - User ID who completed the checklist
+ * @param {Object} client - Slack client
+ * @returns {Promise<boolean>} - True if successful, false otherwise
+ */
+async function postCompletionToChannel(checkedItems, userId, client) {
+  try {
+    // Build completion message
+    const completionBlocks = buildCompletionMessage(
+      checkedItems,
+      `<@${userId}>`
+    );
+
+    // Get the configured channel ID from environment variables
+    const channelId = process.env.SLACK_CHANNEL_ID;
+
+    if (!channelId) {
+      console.error("SLACK_CHANNEL_ID is not configured in .env file");
+      // Fallback to DM if channel is not configured
+      await client.chat.postMessage({
+        channel: userId,
+        text: "⚠️ Security checklist completed, but no channel is configured. Please set SLACK_CHANNEL_ID in your .env file.",
+        blocks: completionBlocks,
+      });
+      return false;
+    }
+
+    // Post the completion message to the configured channel
+    await client.chat.postMessage({
+      channel: channelId,
+      text:
+        checkedItems.length === checklistItems.length
+          ? "✅ Security checklist completed - all items checked!"
+          : "Security checklist completed",
+      blocks: completionBlocks,
+    });
+
+    console.log(
+      `Security checklist completed by ${userId} and posted to channel ${channelId}`
+    );
+    return true;
+  } catch (error) {
+    console.error("Error posting completion message:", error);
+
+    // Try to notify the user if posting to channel fails
+    try {
+      await client.chat.postMessage({
+        channel: userId,
+        text: `⚠️ Error posting security checklist. Please make sure the bot is invited to the channel and has permission to post. Error: ${error.message}`,
+      });
+    } catch (dmError) {
+      console.error("Failed to send error notification to user:", dmError);
+    }
+    return false;
+  }
+}
 
 /**
  * Slash command: /security-check
@@ -40,76 +100,119 @@ app.command("/security-check", async ({ command, ack, client }) => {
 app.view("security_checklist_modal", async ({ ack, body, view, client }) => {
   await ack();
 
-  try {
-    // Extract all checked items from the modal state
-    const values = view.state.values;
-    const checkedItems = [];
+  // Extract all checked items from the modal state
+  const values = view.state.values;
+  const checkedItems = [];
 
-    // Iterate through all the checkbox actions
-    Object.keys(values).forEach((blockId) => {
-      Object.keys(values[blockId]).forEach((actionId) => {
-        const selectedOptions =
-          values[blockId][actionId].selected_options || [];
-        selectedOptions.forEach((option) => {
-          checkedItems.push(option.value);
-        });
+  // Iterate through all the checkbox actions
+  Object.keys(values).forEach((blockId) => {
+    Object.keys(values[blockId]).forEach((actionId) => {
+      const selectedOptions = values[blockId][actionId].selected_options || [];
+      selectedOptions.forEach((option) => {
+        checkedItems.push(option.value);
       });
     });
+  });
 
-    const userId = body.user.id;
+  const userId = body.user.id;
 
-    // Build completion message
-    const completionBlocks = buildCompletionMessage(
-      checkedItems,
-      `<@${userId}>`
-    );
-
-    // Get the configured channel ID from environment variables
-    const channelId = process.env.SLACK_CHANNEL_ID;
-
-    if (!channelId) {
-      console.error("SLACK_CHANNEL_ID is not configured in .env file");
-      // Fallback to DM if channel is not configured
-      await client.chat.postMessage({
-        channel: userId,
-        text: "⚠️ Security checklist completed, but no channel is configured. Please set SLACK_CHANNEL_ID in your .env file.",
-        blocks: completionBlocks,
-      });
-      return;
-    }
-
-    // Post the completion message to the configured channel
-    await client.chat.postMessage({
-      channel: channelId,
-      text: "Security checklist completed",
-      blocks: completionBlocks,
-    });
-
-    console.log(
-      `Security checklist completed by ${userId} and posted to channel ${channelId}`
-    );
-  } catch (error) {
-    console.error("Error handling modal submission:", error);
-
-    // Try to notify the user if posting to channel fails
-    try {
-      await client.chat.postMessage({
-        channel: body.user.id,
-        text: `⚠️ Error posting security checklist. Please make sure the bot is invited to the channel and has permission to post. Error: ${error.message}`,
-      });
-    } catch (dmError) {
-      console.error("Failed to send error notification to user:", dmError);
-    }
-  }
+  // Use shared function to post completion
+  await postCompletionToChannel(checkedItems, userId, client);
 });
 
 /**
- * Handle checkbox interactions (optional - for real-time feedback)
+ * State management for modal checkboxes
+ * Store the state in memory (in production, you might want to use a database)
  */
-app.action(/^checklist_.*/, async ({ ack }) => {
-  // Acknowledge the action immediately
+const modalChecklistState = new Map();
+
+/**
+ * State management for App Home checkboxes
+ */
+const homeChecklistState = new Map();
+
+/**
+ * Shared function to handle checkbox state updates and auto-submit
+ * @param {string} userId - User ID
+ * @param {Object} action - Action object from Slack
+ * @param {Object} client - Slack client
+ * @param {Map} stateMap - State map to use (modal or home)
+ * @param {string} source - Source identifier for logging ("modal" or "app_home")
+ * @param {Function} onAutoSubmit - Optional callback after auto-submit
+ * @returns {Promise<boolean>} - True if auto-submitted, false otherwise
+ */
+async function handleCheckboxAction(
+  userId,
+  action,
+  client,
+  stateMap,
+  source,
+  onAutoSubmit = null
+) {
+  // Initialize user state if needed
+  if (!stateMap.has(userId)) {
+    stateMap.set(userId, new Map());
+  }
+
+  const userState = stateMap.get(userId);
+  const category = action.action_id;
+
+  // Update the state for this specific category
+  if (action.selected_options && action.selected_options.length > 0) {
+    userState.set(
+      category,
+      action.selected_options.map((opt) => opt.value)
+    );
+  } else {
+    userState.delete(category);
+  }
+
+  // Check if all items are now checked
+  const checkedItems = [];
+  userState.forEach((items) => {
+    checkedItems.push(...items);
+  });
+
+  const totalItems = checklistItems.length;
+  const allChecked = checkedItems.length === totalItems;
+
+  // If all items are checked, automatically submit
+  if (allChecked) {
+    console.log(
+      `All items checked in ${source} by user ${userId}, auto-submitting...`
+    );
+
+    // Post completion to channel
+    await postCompletionToChannel(checkedItems, userId, client);
+
+    // Clear state
+    stateMap.delete(userId);
+
+    // Call optional callback (for App Home to update UI)
+    if (onAutoSubmit) {
+      await onAutoSubmit();
+    }
+
+    console.log(`Auto-submitted from ${source} for user ${userId}`);
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Handle checkbox interactions in modal - with auto-submit
+ */
+app.action(/^checklist_.*/, async ({ ack, body, action, client }) => {
   await ack();
-  // No additional action needed - checkboxes update automatically
+
+  await handleCheckboxAction(
+    body.user.id,
+    action,
+    client,
+    modalChecklistState,
+    "modal"
+  );
 });
 
 /**
@@ -146,36 +249,44 @@ app.event("app_mention", async ({ event, client }) => {
 });
 
 /**
- * Handle checkbox interactions in App Home
- * Store the state in memory (in production, you might want to use a database)
+ * Handle checkbox interactions in App Home - with auto-submit
  */
-const homeChecklistState = new Map();
-
-app.action(/^home_checklist_.*/, async ({ ack, body, action }) => {
+app.action(/^home_checklist_.*/, async ({ ack, body, action, client }) => {
   await ack();
 
-  // Store the selected items for this user
   const userId = body.user.id;
-  if (!homeChecklistState.has(userId)) {
-    homeChecklistState.set(userId, new Map());
-  }
 
-  const userState = homeChecklistState.get(userId);
-
-  // Get the category from the action_id
-  const category = action.action_id;
-
-  // Update the state for this specific category
-  if (action.selected_options && action.selected_options.length > 0) {
-    // Store the selected items for this category
-    userState.set(
-      category,
-      action.selected_options.map((opt) => opt.value)
-    );
-  } else {
-    // No items selected for this category, remove it
-    userState.delete(category);
-  }
+  // Use shared checkbox handler with App Home-specific callback
+  await handleCheckboxAction(
+    userId,
+    action,
+    client,
+    homeChecklistState,
+    "app_home",
+    async () => {
+      // Callback to update App Home UI after auto-submit
+      const helpBlocks = buildHelpMessage();
+      await client.views.publish({
+        user_id: userId,
+        view: {
+          type: "home",
+          blocks: [
+            {
+              type: "section",
+              text: {
+                type: "mrkdwn",
+                text: "✅ *Checklist completed successfully!*\n\n🎉 All items were checked! The completion summary has been posted to the team channel.",
+              },
+            },
+            {
+              type: "divider",
+            },
+            ...helpBlocks,
+          ],
+        },
+      });
+    }
+  );
 });
 
 /**
@@ -193,66 +304,37 @@ app.action("home_submit_checklist", async ({ ack, body, client }) => {
     checkedItems.push(...items);
   });
 
-  // Build completion message
-  const completionBlocks = buildCompletionMessage(checkedItems, userId);
+  // Use shared function to post completion
+  const success = await postCompletionToChannel(checkedItems, userId, client);
 
-  try {
-    // Get the configured channel ID from environment variables
-    const channelId = process.env.SLACK_CHANNEL_ID;
+  // Clear the user's state
+  homeChecklistState.delete(userId);
 
-    if (!channelId) {
-      console.error("SLACK_CHANNEL_ID is not configured in .env file");
-      // Fallback to DM if channel is not configured
-      await client.chat.postMessage({
-        channel: userId,
-        text: "⚠️ Security checklist completed, but no channel is configured. Please set SLACK_CHANNEL_ID in your .env file.",
-        blocks: completionBlocks,
-      });
-      return;
-    }
-
-    // Post the completion message to the configured channel
-    await client.chat.postMessage({
-      channel: channelId,
-      text: "Security checklist completed",
-      blocks: completionBlocks,
-    });
-
-    // Clear the user's state
-    homeChecklistState.delete(userId);
-
-    // Update the App Home to show a success message and reset the form
-    const helpBlocks = buildHelpMessage();
-    await client.views.publish({
-      user_id: userId,
-      view: {
-        type: "home",
-        blocks: [
-          {
-            type: "section",
-            text: {
-              type: "mrkdwn",
-              text: "✅ *Checklist submitted successfully!*\n\nThe completion summary has been posted to the team channel.",
-            },
+  // Update the App Home to show a success message and reset the form
+  const helpBlocks = buildHelpMessage();
+  await client.views.publish({
+    user_id: userId,
+    view: {
+      type: "home",
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: success
+              ? "✅ *Checklist submitted successfully!*\n\nThe completion summary has been posted to the team channel."
+              : "⚠️ *Checklist submitted with errors.*\n\nPlease check your DMs for details.",
           },
-          {
-            type: "divider",
-          },
-          ...helpBlocks,
-        ],
-      },
-    });
+        },
+        {
+          type: "divider",
+        },
+        ...helpBlocks,
+      ],
+    },
+  });
 
-    console.log(`✅ Checklist completed by user ${userId} via App Home`);
-  } catch (error) {
-    console.error("Error posting completion message:", error);
-
-    // Notify the user of the error
-    await client.chat.postMessage({
-      channel: userId,
-      text: `❌ Error posting to channel: ${error.message}\n\nMake sure the bot is invited to the channel and has permission to post.`,
-    });
-  }
+  console.log(`✅ Checklist manually submitted by user ${userId} via App Home`);
 });
 
 /**
