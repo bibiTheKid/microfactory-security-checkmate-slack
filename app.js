@@ -7,6 +7,7 @@ const {
   buildInfoModal,
 } = require("./blocks");
 const { checklistItems } = require("./checklist-data");
+const { getUserLanguage, getTranslations } = require("./i18n");
 
 // Initialize the Bolt app
 const app = new App({
@@ -22,14 +23,21 @@ const app = new App({
  * @param {Array} checkedItems - Array of checked item IDs
  * @param {string} userId - User ID who completed the checklist
  * @param {Object} client - Slack client
+ * @param {string} lang - Language code (en, fr, nl)
  * @returns {Promise<boolean>} - True if successful, false otherwise
  */
-async function postCompletionToChannel(checkedItems, userId, client) {
+async function postCompletionToChannel(
+  checkedItems,
+  userId,
+  client,
+  lang = "en"
+) {
   try {
     // Build completion message
     const completionBlocks = buildCompletionMessage(
       checkedItems,
-      `<@${userId}>`
+      `<@${userId}>`,
+      lang
     );
 
     // Get the configured channel ID from environment variables
@@ -84,7 +92,10 @@ app.command("/security-check", async ({ command, ack, client }) => {
   await ack();
 
   try {
-    const modal = buildChecklistModal();
+    // Get user's language
+    const lang = await getUserLanguage(client, command.user_id);
+    console.log(`[app.js] Language detected: ${lang}`);
+    const modal = buildChecklistModal(lang);
 
     await client.views.open({
       trigger_id: command.trigger_id,
@@ -139,6 +150,7 @@ const homeChecklistState = new Map();
  * @param {Object} client - Slack client
  * @param {Map} stateMap - State map to use (modal or home)
  * @param {string} source - Source identifier for logging ("modal" or "app_home")
+ * @param {string} lang - Language code (en, fr, nl)
  * @param {Function} onAutoSubmit - Optional callback after auto-submit
  * @returns {Promise<boolean>} - True if auto-submitted, false otherwise
  */
@@ -148,6 +160,7 @@ async function handleCheckboxAction(
   client,
   stateMap,
   source,
+  lang = "en",
   onAutoSubmit = null
 ) {
   // Initialize user state if needed (now using Set instead of Map)
@@ -174,6 +187,10 @@ async function handleCheckboxAction(
   const totalItems = checklistItems.length;
   const allChecked = checkedItems.length === totalItems;
 
+  console.log(
+    `[handleCheckboxAction] ${source}: ${checkedItems.length}/${totalItems} items checked`
+  );
+
   // If all items are checked, automatically submit
   if (allChecked) {
     console.log(
@@ -181,7 +198,7 @@ async function handleCheckboxAction(
     );
 
     // Post completion to channel
-    await postCompletionToChannel(checkedItems, userId, client);
+    await postCompletionToChannel(checkedItems, userId, client, lang);
 
     // Clear state
     stateMap.delete(userId);
@@ -206,6 +223,10 @@ app.action(/^checklist_.*/, async ({ ack, body, action, client }) => {
 
   const userId = body.user.id;
 
+  // Get user's language
+  const lang = await getUserLanguage(client, userId);
+  const t = getTranslations(lang);
+
   // Use shared checkbox handler with modal-specific callback
   await handleCheckboxAction(
     userId,
@@ -213,6 +234,7 @@ app.action(/^checklist_.*/, async ({ ack, body, action, client }) => {
     client,
     modalChecklistState,
     "modal",
+    lang,
     async () => {
       // Callback to update modal with success message after auto-submit
       try {
@@ -222,12 +244,12 @@ app.action(/^checklist_.*/, async ({ ack, body, action, client }) => {
             type: "modal",
             title: {
               type: "plain_text",
-              text: "✅ Complete!",
+              text: t.successTitle,
               emoji: true,
             },
             close: {
               type: "plain_text",
-              text: "Close",
+              text: t.closeButton,
               emoji: true,
             },
             blocks: [
@@ -235,7 +257,7 @@ app.action(/^checklist_.*/, async ({ ack, body, action, client }) => {
                 type: "section",
                 text: {
                   type: "mrkdwn",
-                  text: "✅ *Checklist completed successfully!*\n\n🎉 All items were checked! The completion summary has been posted to the team channel.\n\n_You can close this modal now._",
+                  text: t.modalSuccess,
                 },
               },
             ],
@@ -254,7 +276,9 @@ app.action(/^checklist_.*/, async ({ ack, body, action, client }) => {
  */
 app.event("app_home_opened", async ({ event, client }) => {
   try {
-    const appHomeBlocks = buildAppHomeView();
+    // Get user's language
+    const lang = await getUserLanguage(client, event.user);
+    const appHomeBlocks = buildAppHomeView({ lang });
 
     await client.views.publish({
       user_id: event.user,
@@ -290,6 +314,10 @@ app.action(/^home_checklist_.*/, async ({ ack, body, action, client }) => {
 
   const userId = body.user.id;
 
+  // Get user's language
+  const lang = await getUserLanguage(client, userId);
+  const t = getTranslations(lang);
+
   // Use shared checkbox handler with App Home-specific callback
   await handleCheckboxAction(
     userId,
@@ -297,11 +325,15 @@ app.action(/^home_checklist_.*/, async ({ ack, body, action, client }) => {
     client,
     homeChecklistState,
     "app_home",
+    lang,
     async () => {
       // Callback to update App Home UI after auto-submit
+      console.log(
+        "[app.js] Auto-submit callback triggered - updating App Home with success message"
+      );
       const appHomeBlocks = buildAppHomeView({
-        successMessage:
-          "✅ *Checklist completed successfully!*\n\n🎉 All items were checked! The completion summary has been posted to the team channel.",
+        lang,
+        successMessage: t.autoSubmitSuccess,
       });
 
       await client.views.publish({
@@ -311,6 +343,7 @@ app.action(/^home_checklist_.*/, async ({ ack, body, action, client }) => {
           blocks: appHomeBlocks,
         },
       });
+      console.log("[app.js] App Home updated with success message");
     }
   );
 });
@@ -333,8 +366,11 @@ app.action(/^info_.*/, async ({ ack, body, action, client }) => {
       return;
     }
 
+    // Get user's language
+    const lang = await getUserLanguage(client, body.user.id);
+
     // Build and open the info modal
-    const infoModal = buildInfoModal(item);
+    const infoModal = buildInfoModal(item, lang);
 
     await client.views.open({
       trigger_id: body.trigger_id,
@@ -359,18 +395,25 @@ app.action("home_submit_checklist", async ({ ack, body, client }) => {
   // Convert Set to array
   const checkedItems = Array.from(userState);
 
+  // Get user's language
+  const lang = await getUserLanguage(client, userId);
+  const t = getTranslations(lang);
+
   // Use shared function to post completion
-  const success = await postCompletionToChannel(checkedItems, userId, client);
+  const success = await postCompletionToChannel(
+    checkedItems,
+    userId,
+    client,
+    lang
+  );
 
   // Clear the user's state
   homeChecklistState.delete(userId);
 
   // Update the App Home to show a success message at the bottom
-  const successMessage = success
-    ? "✅ *Checklist submitted successfully!*\n\nThe completion summary has been posted to the team channel."
-    : "⚠️ *Checklist submitted with errors.*\n\nPlease check your DMs for details.";
+  const successMessage = success ? t.manualSubmitSuccess : t.submitError;
 
-  const appHomeBlocks = buildAppHomeView({ successMessage });
+  const appHomeBlocks = buildAppHomeView({ lang, successMessage });
 
   await client.views.publish({
     user_id: userId,
