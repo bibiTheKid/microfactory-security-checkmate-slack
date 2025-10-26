@@ -43,7 +43,8 @@ function buildChecklistBlocks(actionIdPrefix, blockIdPrefix, lang = "en") {
 
     // Add each item as a separate row with checkbox and info button
     categories[category].forEach((item) => {
-      const itemText = t.items[item.id].text;
+      // Combine emoji from checklist-data.js with translated text from i18n.js
+      const itemText = `${item.emoji} ${t.items[item.id].text}`;
 
       blocks.push({
         type: "actions",
@@ -185,7 +186,7 @@ function buildInfoModal(item, lang = "en") {
         type: "header",
         text: {
           type: "plain_text",
-          text: `${item.emoji} ${itemText.replace(item.emoji, "").trim()}`,
+          text: `${item.emoji} ${itemText}`,
           emoji: true,
         },
       },
@@ -209,7 +210,7 @@ function buildInfoModal(item, lang = "en") {
       {
         type: "image",
         image_url: item.imageUrl,
-        alt_text: itemText,
+        alt_text: `${item.emoji} ${itemText}`,
       },
     ],
   };
@@ -268,7 +269,7 @@ function buildCompletionMessage(checkedItems, userName, lang = "en") {
     );
 
     const uncheckedList = uncheckedItems
-      .map((item) => `• ${t.items[item.id].text}`)
+      .map((item) => `• ${item.emoji} ${t.items[item.id].text}`)
       .join("\n");
 
     blocks.push({
@@ -288,7 +289,7 @@ function buildCompletionMessage(checkedItems, userName, lang = "en") {
   if (checkedCount > 0) {
     const checkedItemsList = checklistItems
       .filter((item) => checkedItems.includes(item.id))
-      .map((item) => `✓ ${t.items[item.id].text}`)
+      .map((item) => `✓ ${item.emoji} ${t.items[item.id].text}`)
       .join("\n");
 
     blocks.push({
