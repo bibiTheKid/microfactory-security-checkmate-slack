@@ -314,27 +314,9 @@ function buildAppHomeView(options = {}) {
     ...buildChecklistBlocks("home_checklist", "home_category"),
   ];
 
-  // Add submit button
-  blocks.push({
-    type: "actions",
-    block_id: "home_submit_actions",
-    elements: [
-      {
-        type: "button",
-        text: {
-          type: "plain_text",
-          text: "Complete ✓",
-          emoji: true,
-        },
-        style: "primary",
-        action_id: "home_submit_checklist",
-        value: "submit",
-      },
-    ],
-  });
-
-  // Add success message at the bottom if provided
+  // Add success message OR submit button (not both)
   if (options.successMessage) {
+    // Show success message instead of submit button
     blocks.push(
       {
         type: "divider",
@@ -347,6 +329,25 @@ function buildAppHomeView(options = {}) {
         },
       }
     );
+  } else {
+    // Show submit button
+    blocks.push({
+      type: "actions",
+      block_id: "home_submit_actions",
+      elements: [
+        {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: "Complete ✓",
+            emoji: true,
+          },
+          style: "primary",
+          action_id: "home_submit_checklist",
+          value: "submit",
+        },
+      ],
+    });
   }
 
   blocks.push({
@@ -358,7 +359,7 @@ function buildAppHomeView(options = {}) {
     type: "section",
     text: {
       type: "mrkdwn",
-      text: '*� How to Use:*\n\n1️⃣ Check off each item above as you complete it\n2️⃣ Click *"Complete ✓"* when done\n3️⃣ Summary will be posted to the team channel\n\n_You can also type `/security-check` in any channel to open the checklist modal._',
+      text: "*How to Use:*\n\n1️⃣ Check off each item above as you complete it\n2️⃣ Or click *\"Complete ✓\"* if you don't want to check all items one by one and you're sure you've already completed the tasks\n3️⃣ Summary will be posted to the team channel\n\n_You can also type `/security-check` in any channel to open the checklist modal._",
     },
   });
 
