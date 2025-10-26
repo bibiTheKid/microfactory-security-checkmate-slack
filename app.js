@@ -204,12 +204,48 @@ async function handleCheckboxAction(
 app.action(/^checklist_.*/, async ({ ack, body, action, client }) => {
   await ack();
 
+  const userId = body.user.id;
+
+  // Use shared checkbox handler with modal-specific callback
   await handleCheckboxAction(
-    body.user.id,
+    userId,
     action,
     client,
     modalChecklistState,
-    "modal"
+    "modal",
+    async () => {
+      // Callback to update modal with success message after auto-submit
+      try {
+        await client.views.update({
+          view_id: body.view.id,
+          view: {
+            type: "modal",
+            title: {
+              type: "plain_text",
+              text: "✅ Complete!",
+              emoji: true,
+            },
+            close: {
+              type: "plain_text",
+              text: "Close",
+              emoji: true,
+            },
+            blocks: [
+              {
+                type: "section",
+                text: {
+                  type: "mrkdwn",
+                  text: "✅ *Checklist completed successfully!*\n\n🎉 All items were checked! The completion summary has been posted to the team channel.\n\n_You can close this modal now._",
+                },
+              },
+            ],
+          },
+        });
+        console.log(`Modal updated with success message for user ${userId}`);
+      } catch (error) {
+        console.error("Error updating modal on auto-submit:", error);
+      }
+    }
   );
 });
 
