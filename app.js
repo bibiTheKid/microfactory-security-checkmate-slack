@@ -4,6 +4,7 @@ const {
   buildChecklistModal,
   buildCompletionMessage,
   buildAppHomeView,
+  buildInfoModal,
 } = require("./blocks");
 const { checklistItems } = require("./checklist-data");
 
@@ -149,30 +150,27 @@ async function handleCheckboxAction(
   source,
   onAutoSubmit = null
 ) {
-  // Initialize user state if needed
+  // Initialize user state if needed (now using Set instead of Map)
   if (!stateMap.has(userId)) {
-    stateMap.set(userId, new Map());
+    stateMap.set(userId, new Set());
   }
 
   const userState = stateMap.get(userId);
-  const category = action.action_id;
 
-  // Update the state for this specific category
+  // Extract item ID from action_id (format: "checklist_<item_id>" or "home_checklist_<item_id>")
+  const itemId = action.action_id.replace(/^(home_)?checklist_/, "");
+
+  // Update the state for this specific item
   if (action.selected_options && action.selected_options.length > 0) {
-    userState.set(
-      category,
-      action.selected_options.map((opt) => opt.value)
-    );
+    // Item is checked
+    userState.add(itemId);
   } else {
-    userState.delete(category);
+    // Item is unchecked
+    userState.delete(itemId);
   }
 
   // Check if all items are now checked
-  const checkedItems = [];
-  userState.forEach((items) => {
-    checkedItems.push(...items);
-  });
-
+  const checkedItems = Array.from(userState);
   const totalItems = checklistItems.length;
   const allChecked = checkedItems.length === totalItems;
 
@@ -282,19 +280,48 @@ app.action(/^home_checklist_.*/, async ({ ack, body, action, client }) => {
 });
 
 /**
+ * Handle info button clicks - opens modal with detailed information
+ */
+app.action(/^info_.*/, async ({ ack, body, action, client }) => {
+  await ack();
+
+  try {
+    // Extract item ID from action_id (format: "info_<item_id>")
+    const itemId = action.action_id.replace("info_", "");
+
+    // Find the item in the checklist
+    const item = checklistItems.find((i) => i.id === itemId);
+
+    if (!item) {
+      console.error(`Item not found: ${itemId}`);
+      return;
+    }
+
+    // Build and open the info modal
+    const infoModal = buildInfoModal(item);
+
+    await client.views.open({
+      trigger_id: body.trigger_id,
+      view: infoModal,
+    });
+
+    console.log(`Info modal opened for item: ${itemId}`);
+  } catch (error) {
+    console.error("Error opening info modal:", error);
+  }
+});
+
+/**
  * Handle submit button from App Home
  */
 app.action("home_submit_checklist", async ({ ack, body, client }) => {
   await ack();
 
   const userId = body.user.id;
-  const userState = homeChecklistState.get(userId) || new Map();
+  const userState = homeChecklistState.get(userId) || new Set();
 
-  // Flatten all selected items from all categories into a single array
-  const checkedItems = [];
-  userState.forEach((items) => {
-    checkedItems.push(...items);
-  });
+  // Convert Set to array
+  const checkedItems = Array.from(userState);
 
   // Use shared function to post completion
   const success = await postCompletionToChannel(checkedItems, userId, client);

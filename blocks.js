@@ -15,7 +15,7 @@ function groupItemsByCategory() {
 }
 
 /**
- * Build checklist blocks with checkboxes
+ * Build checklist blocks with checkboxes and info buttons
  * @param {string} actionIdPrefix - Prefix for action_id (e.g., "checklist" or "home_checklist")
  * @param {string} blockIdPrefix - Prefix for block_id (e.g., "category" or "home_category")
  * @returns {Array} Array of Block Kit blocks
@@ -26,8 +26,6 @@ function buildChecklistBlocks(actionIdPrefix, blockIdPrefix) {
 
   // Add each category with its items
   Object.keys(categories).forEach((category) => {
-    const categorySlug = category.toLowerCase().replace(/\s+/g, "_");
-
     // Category header
     blocks.push({
       type: "section",
@@ -37,26 +35,58 @@ function buildChecklistBlocks(actionIdPrefix, blockIdPrefix) {
       },
     });
 
-    // Add checkboxes for each item in the category
-    const options = categories[category].map((item) => ({
-      text: {
-        type: "mrkdwn",
-        text: item.text,
-      },
-      value: item.id,
-    }));
-
-    blocks.push({
-      type: "actions",
-      block_id: `${blockIdPrefix}_${categorySlug}`,
-      elements: [
-        {
-          type: "checkboxes",
-          action_id: `${actionIdPrefix}_${categorySlug}`,
-          options: options,
-        },
-      ],
+    // Add each item as a separate row with checkbox and info button
+    categories[category].forEach((item) => {
+      blocks.push({
+        type: "actions",
+        block_id: `${blockIdPrefix}_${item.id}`,
+        elements: [
+          {
+            type: "checkboxes",
+            action_id: `${actionIdPrefix}_${item.id}`,
+            options: [
+              {
+                text: {
+                  type: "mrkdwn",
+                  text: item.text,
+                },
+                value: item.id,
+              },
+            ],
+          },
+          {
+            type: "button",
+            text: {
+              type: "plain_text",
+              text: "More details",
+              emoji: true,
+            },
+            action_id: `info_${item.id}`,
+            value: item.id,
+          },
+        ],
+      });
     });
+
+    // const options = categories[category].map((item) => ({
+    //   text: {
+    //     type: "mrkdwn",
+    //     text: item.text,
+    //   },
+    //   value: item.id,
+    // }));
+
+    // blocks.push({
+    //   type: "actions",
+    //   block_id: `${blockIdPrefix}_${categorySlug}`,
+    //   elements: [
+    //     {
+    //       type: "checkboxes",
+    //       action_id: `${actionIdPrefix}_${categorySlug}`,
+    //       options: options,
+    //     },
+    //   ],
+    // });
 
     blocks.push({
       type: "divider",
@@ -112,6 +142,59 @@ function buildChecklistModal() {
       emoji: true,
     },
     blocks: blocks,
+  };
+}
+
+/**
+ * Build info modal for a specific checklist item
+ * @param {Object} item - The checklist item
+ * @returns {Object} Modal view object
+ */
+function buildInfoModal(item) {
+  return {
+    type: "modal",
+    title: {
+      type: "plain_text",
+      text: "Task Information",
+      emoji: true,
+    },
+    close: {
+      type: "plain_text",
+      text: "Close",
+      emoji: true,
+    },
+    blocks: [
+      {
+        type: "header",
+        text: {
+          type: "plain_text",
+          text: `${item.emoji} ${item.text.replace(item.emoji, "").trim()}`,
+          emoji: true,
+        },
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: `*Category:* ${item.category}`,
+        },
+      },
+      {
+        type: "divider",
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: ` ${item.description}`,
+        },
+      },
+      {
+        type: "image",
+        image_url: item.imageUrl,
+        alt_text: item.text,
+      },
+    ],
   };
 }
 
@@ -296,4 +379,5 @@ module.exports = {
   buildChecklistModal,
   buildCompletionMessage,
   buildAppHomeView,
+  buildInfoModal,
 };
