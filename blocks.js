@@ -292,16 +292,8 @@ function buildAppHomeView(options = {}) {
   return blocks;
 }
 
-/**
- * Build a simple help message (kept for backwards compatibility)
- */
-function buildHelpMessage() {
-  return buildAppHomeView();
-}
-
 module.exports = {
   buildChecklistModal,
   buildCompletionMessage,
-  buildHelpMessage,
   buildAppHomeView,
 };

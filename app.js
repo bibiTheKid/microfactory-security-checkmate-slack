@@ -3,7 +3,6 @@ const { App } = require("@slack/bolt");
 const {
   buildChecklistModal,
   buildCompletionMessage,
-  buildHelpMessage,
   buildAppHomeView,
 } = require("./blocks");
 const { checklistItems } = require("./checklist-data");
@@ -217,17 +216,17 @@ app.action(/^checklist_.*/, async ({ ack, body, action, client }) => {
 });
 
 /**
- * App home opened event - show help message
+ * App home opened event - show App Home view
  */
 app.event("app_home_opened", async ({ event, client }) => {
   try {
-    const helpBlocks = buildHelpMessage();
+    const appHomeBlocks = buildAppHomeView();
 
     await client.views.publish({
       user_id: event.user,
       view: {
         type: "home",
-        blocks: helpBlocks,
+        blocks: appHomeBlocks,
       },
     });
   } catch (error) {
