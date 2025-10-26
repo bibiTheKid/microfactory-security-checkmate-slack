@@ -4,6 +4,7 @@ const {
   buildChecklistModal,
   buildCompletionMessage,
   buildHelpMessage,
+  buildAppHomeView,
 } = require("./blocks");
 const { checklistItems } = require("./checklist-data");
 
@@ -265,24 +266,16 @@ app.action(/^home_checklist_.*/, async ({ ack, body, action, client }) => {
     "app_home",
     async () => {
       // Callback to update App Home UI after auto-submit
-      const helpBlocks = buildHelpMessage();
+      const appHomeBlocks = buildAppHomeView({
+        successMessage:
+          "✅ *Checklist completed successfully!*\n\n🎉 All items were checked! The completion summary has been posted to the team channel.",
+      });
+
       await client.views.publish({
         user_id: userId,
         view: {
           type: "home",
-          blocks: [
-            {
-              type: "section",
-              text: {
-                type: "mrkdwn",
-                text: "✅ *Checklist completed successfully!*\n\n🎉 All items were checked! The completion summary has been posted to the team channel.",
-              },
-            },
-            {
-              type: "divider",
-            },
-            ...helpBlocks,
-          ],
+          blocks: appHomeBlocks,
         },
       });
     }
@@ -310,27 +303,18 @@ app.action("home_submit_checklist", async ({ ack, body, client }) => {
   // Clear the user's state
   homeChecklistState.delete(userId);
 
-  // Update the App Home to show a success message and reset the form
-  const helpBlocks = buildHelpMessage();
+  // Update the App Home to show a success message at the bottom
+  const successMessage = success
+    ? "✅ *Checklist submitted successfully!*\n\nThe completion summary has been posted to the team channel."
+    : "⚠️ *Checklist submitted with errors.*\n\nPlease check your DMs for details.";
+
+  const appHomeBlocks = buildAppHomeView({ successMessage });
+
   await client.views.publish({
     user_id: userId,
     view: {
       type: "home",
-      blocks: [
-        {
-          type: "section",
-          text: {
-            type: "mrkdwn",
-            text: success
-              ? "✅ *Checklist submitted successfully!*\n\nThe completion summary has been posted to the team channel."
-              : "⚠️ *Checklist submitted with errors.*\n\nPlease check your DMs for details.",
-          },
-        },
-        {
-          type: "divider",
-        },
-        ...helpBlocks,
-      ],
+      blocks: appHomeBlocks,
     },
   });
 

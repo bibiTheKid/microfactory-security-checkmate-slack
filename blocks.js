@@ -203,8 +203,11 @@ function buildCompletionMessage(checkedItems, userName) {
 
 /**
  * Build App Home view with interactive checklist
+ * @param {Object} options - Optional configuration
+ * @param {string} options.successMessage - Optional success message to show at bottom
+ * @returns {Array} Array of Block Kit blocks
  */
-function buildAppHomeView() {
+function buildAppHomeView(options = {}) {
   const blocks = [
     {
       type: "header",
@@ -247,6 +250,22 @@ function buildAppHomeView() {
     ],
   });
 
+  // Add success message at the bottom if provided
+  if (options.successMessage) {
+    blocks.push(
+      {
+        type: "divider",
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: options.successMessage,
+        },
+      }
+    );
+  }
+
   blocks.push({
     type: "divider",
   });
@@ -284,4 +303,5 @@ module.exports = {
   buildChecklistModal,
   buildCompletionMessage,
   buildHelpMessage,
+  buildAppHomeView,
 };
