@@ -37,7 +37,7 @@ const translations = {
     allItemsChecked: "✅ All items checked!",
 
     // How to Use
-    howToUseTitle: "📖 How to Use:",
+    howToUseTitle: "📖 How to Use?",
     howToUseStep1: "1️⃣ Check off each item above as you complete it",
     howToUseStep2:
       "2️⃣ Or click *\"Complete ✓\"* if you don't want to check all items one by one and you're sure you've already completed the tasks",
@@ -159,7 +159,7 @@ const translations = {
     allItemsChecked: "✅ Tous les éléments cochés !",
 
     // How to Use
-    howToUseTitle: "📖 Comment Utiliser :",
+    howToUseTitle: "📖 Comment utiliser cette app ?",
     howToUseStep1: "1️⃣ Cochez chaque élément ci-dessus au fur et à mesure",
     howToUseStep2:
       '2️⃣ Ou cliquez sur *"Terminer ✓"* si vous ne voulez pas cocher tous les éléments un par un et que vous êtes sûr d\'avoir déjà terminé les tâches',
@@ -280,7 +280,7 @@ const translations = {
     allItemsChecked: "✅ Alle items aangevinkt!",
 
     // How to Use
-    howToUseTitle: "📖 Hoe te Gebruiken:",
+    howToUseTitle: "📖 Hoe te Gebruiken?",
     howToUseStep1: "1️⃣ Vink elk item hierboven af terwijl u het voltooit",
     howToUseStep2:
       '2️⃣ Of klik op *"Voltooien ✓"* als u niet alle items één voor één wilt aanvinken en u zeker weet dat u de taken al hebt voltooid',

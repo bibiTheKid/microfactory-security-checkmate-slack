@@ -15,6 +15,7 @@ Created `postCompletionToChannel()` - a single function that handles posting com
 **Purpose:** Eliminates code duplication for posting completion messages
 
 **Features:**
+
 - ✅ Builds completion message with checked items
 - ✅ Posts to configured channel
 - ✅ Handles missing channel configuration
@@ -24,12 +25,14 @@ Created `postCompletionToChannel()` - a single function that handles posting com
 - ✅ Logs all actions to console
 
 **Signature:**
+
 ```javascript
 async function postCompletionToChannel(checkedItems, userId, client)
   -> Returns: Promise<boolean>
 ```
 
 **Used by:**
+
 - Modal submission handler
 - Modal checkbox auto-submit
 - App Home checkbox auto-submit
@@ -42,6 +45,7 @@ Added auto-submit functionality to the modal checkbox handler.
 **Location:** `app.js` (lines 123-189)
 
 **How it works:**
+
 1. User checks a checkbox in the modal
 2. State is updated in `modalChecklistState` Map
 3. Total checked items are counted
@@ -51,6 +55,7 @@ Added auto-submit functionality to the modal checkbox handler.
 7. Modal stays open (Slack limitation - can't close from action handler)
 
 **State Management:**
+
 ```javascript
 const modalChecklistState = new Map();
 // Structure: Map<userId, Map<category, selectedItems[]>>
@@ -63,6 +68,7 @@ Updated App Home checkbox handler to use shared function.
 **Location:** `app.js` (lines 224-303)
 
 **Changes:**
+
 - ✅ Now uses `postCompletionToChannel()` instead of inline code
 - ✅ Simplified error handling
 - ✅ Consistent success/error messages
@@ -75,6 +81,7 @@ Updated manual submit button handler to use shared function.
 **Location:** `app.js` (lines 305-351)
 
 **Changes:**
+
 - ✅ Now uses `postCompletionToChannel()` instead of inline code
 - ✅ Simplified from ~75 lines to ~45 lines
 - ✅ Consistent with auto-submit behavior
@@ -86,6 +93,7 @@ Updated modal submission handler to use shared function.
 **Location:** `app.js` (lines 97-121)
 
 **Changes:**
+
 - ✅ Now uses `postCompletionToChannel()` instead of inline code
 - ✅ Simplified from ~65 lines to ~25 lines
 - ✅ Cleaner, more maintainable code
@@ -95,10 +103,11 @@ Updated modal submission handler to use shared function.
 ### Before: Duplicated Code
 
 **Modal submission:**
+
 ```javascript
-app.view("security_checklist_modal", async ({ ack, body, view, client }) => {
+app.view("modal_submit_checklist", async ({ ack, body, view, client }) => {
   await ack();
-  
+
   // Extract checked items (15 lines)
   // Build completion message (5 lines)
   // Check channel config (10 lines)
@@ -109,10 +118,11 @@ app.view("security_checklist_modal", async ({ ack, body, view, client }) => {
 ```
 
 **App Home submit:**
+
 ```javascript
 app.action("home_submit_checklist", async ({ ack, body, client }) => {
   await ack();
-  
+
   // Extract checked items (10 lines)
   // Build completion message (5 lines)
   // Check channel config (10 lines)
@@ -126,6 +136,7 @@ app.action("home_submit_checklist", async ({ ack, body, client }) => {
 ### After: Shared Function
 
 **Shared function:**
+
 ```javascript
 async function postCompletionToChannel(checkedItems, userId, client) {
   // Build completion message (5 lines)
@@ -137,10 +148,11 @@ async function postCompletionToChannel(checkedItems, userId, client) {
 ```
 
 **Modal submission:**
+
 ```javascript
-app.view("security_checklist_modal", async ({ ack, body, view, client }) => {
+app.view("modal_submit_checklist", async ({ ack, body, view, client }) => {
   await ack();
-  
+
   // Extract checked items (15 lines)
   // Call shared function (1 line)
   // Total: ~16 lines
@@ -148,10 +160,11 @@ app.view("security_checklist_modal", async ({ ack, body, view, client }) => {
 ```
 
 **App Home submit:**
+
 ```javascript
 app.action("home_submit_checklist", async ({ ack, body, client }) => {
   await ack();
-  
+
   // Extract checked items (10 lines)
   // Call shared function (1 line)
   // Update App Home (15 lines)
@@ -164,21 +177,25 @@ app.action("home_submit_checklist", async ({ ack, body, client }) => {
 ## Benefits
 
 ### 1. DRY Principle (Don't Repeat Yourself)
+
 - ✅ Single source of truth for posting logic
 - ✅ Update once, applies everywhere
 - ✅ Consistent behavior across all interfaces
 
 ### 2. Maintainability
+
 - ✅ Easier to fix bugs (fix in one place)
 - ✅ Easier to add features (add in one place)
 - ✅ Easier to understand code flow
 
 ### 3. Consistency
+
 - ✅ Same error messages everywhere
 - ✅ Same success messages everywhere
 - ✅ Same logging format everywhere
 
 ### 4. Testability
+
 - ✅ Can test shared function independently
 - ✅ Easier to mock for unit tests
 - ✅ Clearer separation of concerns
@@ -187,16 +204,16 @@ app.action("home_submit_checklist", async ({ ack, body, client }) => {
 
 Both modal and App Home now have:
 
-| Feature | Modal | App Home |
-|---------|-------|----------|
-| Auto-submit when all items checked | ✅ | ✅ |
-| Manual submit button | ✅ | ✅ |
-| State management | ✅ | ✅ |
-| Post to configured channel | ✅ | ✅ |
-| Error handling | ✅ | ✅ |
-| Success notification | ✅ | ✅ |
-| Fallback to DM | ✅ | ✅ |
-| Console logging | ✅ | ✅ |
+| Feature                            | Modal | App Home |
+| ---------------------------------- | ----- | -------- |
+| Auto-submit when all items checked | ✅    | ✅       |
+| Manual submit button               | ✅    | ✅       |
+| State management                   | ✅    | ✅       |
+| Post to configured channel         | ✅    | ✅       |
+| Error handling                     | ✅    | ✅       |
+| Success notification               | ✅    | ✅       |
+| Fallback to DM                     | ✅    | ✅       |
+| Console logging                    | ✅    | ✅       |
 
 ## User Experience
 
@@ -226,6 +243,7 @@ Both modal and App Home now have:
 ### State Management
 
 **Modal State:**
+
 ```javascript
 const modalChecklistState = new Map();
 // Map<userId, Map<categoryActionId, selectedItemIds[]>>
@@ -240,6 +258,7 @@ const modalChecklistState = new Map();
 ```
 
 **App Home State:**
+
 ```javascript
 const homeChecklistState = new Map();
 // Map<userId, Map<categoryActionId, selectedItemIds[]>>
@@ -305,12 +324,14 @@ if (allChecked) {
 ### Test Manual Submit
 
 **Modal:**
+
 1. Open modal with `/security-check`
 2. Check some items (not all)
 3. Click "Complete ✓"
 4. Verify completion posted with warning about missing items
 
 **App Home:**
+
 1. Open App Home
 2. Check some items (not all)
 3. Click "Complete ✓"
@@ -321,11 +342,13 @@ if (allChecked) {
 ### `app.js`
 
 **Added:**
+
 - `postCompletionToChannel()` function (lines 19-76)
 - `modalChecklistState` Map (line 127)
 - Auto-submit logic in modal checkbox handler (lines 132-189)
 
 **Refactored:**
+
 - Modal submission handler (lines 97-121) - now uses shared function
 - App Home checkbox handler (lines 230-303) - now uses shared function
 - App Home submit button handler (lines 305-351) - now uses shared function
@@ -350,11 +373,13 @@ No changes needed - already refactored in previous update.
 ### What Changed for Users
 
 **Modal:**
+
 - NEW: Auto-submits when all items checked
 - Same: Manual submit button still works
 - Same: Posts to configured channel
 
 **App Home:**
+
 - Same: Auto-submits when all items checked (already had this)
 - Same: Manual submit button still works
 - Same: Posts to configured channel
@@ -397,7 +422,6 @@ Building on this refactoring:
 ✅ **Code reduction** - 30% less code, same functionality  
 ✅ **Feature parity** - Modal and App Home have identical capabilities  
 ✅ **Maintainability** - Single source of truth for posting logic  
-✅ **Backward compatible** - No breaking changes  
+✅ **Backward compatible** - No breaking changes
 
 The app is now more maintainable, consistent, and provides a better user experience across both interfaces! 🎉
-

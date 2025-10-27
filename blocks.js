@@ -2,25 +2,8 @@ const { checklistItems } = require("./checklist-data");
 const { getTranslations } = require("./i18n");
 
 /**
- * Helper function to group checklist items by category
- * @param {Object} t - Translations object
- * @returns {Object} Items grouped by category
- */
-function groupItemsByCategory(t) {
-  const categories = {};
-  checklistItems.forEach((item) => {
-    const translatedCategory = t.categories[item.category];
-    if (!categories[translatedCategory]) {
-      categories[translatedCategory] = [];
-    }
-    categories[translatedCategory].push(item);
-  });
-  return categories;
-}
-
-/**
  * Build checklist blocks with checkboxes and info buttons
- * @param {string} actionIdPrefix - Prefix for action_id (e.g., "checklist" or "home_checklist")
+ * @param {string} actionIdPrefix - Prefix for action_id (e.g., "modal" or "home")
  * @param {string} blockIdPrefix - Prefix for block_id (e.g., "category" or "home_category")
  * @param {string} lang - Language code (en, fr, nl)
  * @returns {Array} Array of Block Kit blocks
@@ -52,7 +35,7 @@ function buildChecklistBlocks(actionIdPrefix, blockIdPrefix, lang = "en") {
         elements: [
           {
             type: "checkboxes",
-            action_id: `${actionIdPrefix}_${item.id}`,
+            action_id: `${actionIdPrefix}_checkbox_${item.id}`,
             options: [
               {
                 text: {
@@ -70,7 +53,7 @@ function buildChecklistBlocks(actionIdPrefix, blockIdPrefix, lang = "en") {
               text: t.infoButton,
               emoji: true,
             },
-            action_id: `info_${item.id}`,
+            action_id: `item_info_${item.id}`,
             value: item.id,
           },
         ],
@@ -91,7 +74,7 @@ function buildChecklistBlocks(actionIdPrefix, blockIdPrefix, lang = "en") {
     //   elements: [
     //     {
     //       type: "checkboxes",
-    //       action_id: `${actionIdPrefix}_${categorySlug}`,
+    //       action_id: `${actionIdPrefix}__checkbox_${categorySlug}`,
     //       options: options,
     //     },
     //   ],
@@ -100,6 +83,97 @@ function buildChecklistBlocks(actionIdPrefix, blockIdPrefix, lang = "en") {
     blocks.push({
       type: "divider",
     });
+  });
+
+  return blocks;
+}
+
+/**
+ * Build App Home view with interactive checklist
+ * @param {Object} options - Optional configuration
+ * @param {string} options.successMessage - Optional success message to show at bottom
+ * @param {string} options.lang - Language code (en, fr, nl)
+ * @returns {Array} Array of Block Kit blocks
+ */
+function buildAppHomeView(options = {}) {
+  const lang = options.lang || "en";
+  const t = getTranslations(lang);
+
+  const blocks = [
+    {
+      type: "header",
+      text: {
+        type: "plain_text",
+        text: t.appTitle,
+        emoji: true,
+      },
+    },
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: t.checklistIntro,
+      },
+    },
+    {
+      type: "divider",
+    },
+    // Add the checklist blocks
+    ...buildChecklistBlocks("home", "home_category", lang),
+  ];
+
+  // Add success message OR submit button (not both)
+  if (options.successMessage) {
+    // Show success message instead of submit button
+    blocks.push({
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: options.successMessage,
+      },
+    });
+  } else {
+    // Show submit button
+    blocks.push({
+      type: "actions",
+      block_id: "home_submit_actions",
+      elements: [
+        {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: t.completeButton,
+            emoji: true,
+          },
+          style: "primary",
+          action_id: "home_submit_checklist",
+          value: "submit",
+        },
+      ],
+    });
+  }
+
+  blocks.push({
+    type: "divider",
+  });
+
+  // Add "How to Use" section
+  blocks.push({
+    type: "section",
+    text: {
+      type: "mrkdwn",
+      text: `*${t.howToUseTitle}*\n\n${t.howToUseStep1}\n${t.howToUseStep2}\n${t.howToUseStep3}\n\n${t.howToUseFooter}`,
+    },
+  });
+
+  blocks.push({
+    type: "context",
+    elements: [
+      {
+        type: "mrkdwn",
+        text: "🌱 _Supporting the circular economy through shared workshop spaces_ | Made for Microfactory Brussels",
+      },
+    ],
   });
 
   return blocks;
@@ -132,12 +206,12 @@ function buildChecklistModal(lang = "en") {
       type: "divider",
     },
     // Add the checklist blocks
-    ...buildChecklistBlocks("checklist", "category", lang),
+    ...buildChecklistBlocks("modal", "category", lang),
   ];
 
   return {
     type: "modal",
-    callback_id: "security_checklist_modal",
+    callback_id: "modal_submit_checklist",
     title: {
       type: "plain_text",
       text: t.modalTitle,
@@ -305,104 +379,25 @@ function buildCompletionMessage(checkedItems, userName, lang = "en") {
 }
 
 /**
- * Build App Home view with interactive checklist
- * @param {Object} options - Optional configuration
- * @param {string} options.successMessage - Optional success message to show at bottom
- * @param {string} options.lang - Language code (en, fr, nl)
- * @returns {Array} Array of Block Kit blocks
+ * Helper function to group checklist items by category
+ * @param {Object} t - Translations object
+ * @returns {Object} Items grouped by category
  */
-function buildAppHomeView(options = {}) {
-  const lang = options.lang || "en";
-  const t = getTranslations(lang);
-
-  const blocks = [
-    {
-      type: "header",
-      text: {
-        type: "plain_text",
-        text: t.appTitle,
-        emoji: true,
-      },
-    },
-    {
-      type: "section",
-      text: {
-        type: "mrkdwn",
-        text: t.checklistIntro,
-      },
-    },
-    {
-      type: "divider",
-    },
-    // Add the checklist blocks
-    ...buildChecklistBlocks("home_checklist", "home_category", lang),
-  ];
-
-  // Add success message OR submit button (not both)
-  if (options.successMessage) {
-    // Show success message instead of submit button
-    blocks.push(
-      {
-        type: "divider",
-      },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: options.successMessage,
-        },
-      }
-    );
-  } else {
-    // Show submit button
-    blocks.push({
-      type: "actions",
-      block_id: "home_submit_actions",
-      elements: [
-        {
-          type: "button",
-          text: {
-            type: "plain_text",
-            text: t.completeButton,
-            emoji: true,
-          },
-          style: "primary",
-          action_id: "home_submit_checklist",
-          value: "submit",
-        },
-      ],
-    });
-  }
-
-  blocks.push({
-    type: "divider",
+function groupItemsByCategory(t) {
+  const categories = {};
+  checklistItems.forEach((item) => {
+    const translatedCategory = t.categories[item.category];
+    if (!categories[translatedCategory]) {
+      categories[translatedCategory] = [];
+    }
+    categories[translatedCategory].push(item);
   });
-
-  // Add "How to Use" section
-  blocks.push({
-    type: "section",
-    text: {
-      type: "mrkdwn",
-      text: `*${t.howToUseTitle}*\n\n${t.howToUseStep1}\n${t.howToUseStep2}\n${t.howToUseStep3}\n\n${t.howToUseFooter}`,
-    },
-  });
-
-  blocks.push({
-    type: "context",
-    elements: [
-      {
-        type: "mrkdwn",
-        text: "🌱 _Supporting the circular economy through shared workshop spaces_ | Made for Microfactory Brussels",
-      },
-    ],
-  });
-
-  return blocks;
+  return categories;
 }
 
 module.exports = {
-  buildChecklistModal,
-  buildCompletionMessage,
   buildAppHomeView,
+  buildChecklistModal,
   buildInfoModal,
+  buildCompletionMessage,
 };
