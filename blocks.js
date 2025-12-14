@@ -166,16 +166,6 @@ function buildAppHomeView(options = {}) {
     },
   });
 
-  blocks.push({
-    type: "context",
-    elements: [
-      {
-        type: "mrkdwn",
-        text: "🌱 _Supporting the circular economy through shared workshop spaces_ | Made for Microfactory Brussels",
-      },
-    ],
-  });
-
   return blocks;
 }
 

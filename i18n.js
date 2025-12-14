@@ -51,22 +51,22 @@ const translations = {
 
     // Checklist Items
     items: {
-      wood_lights: {
+      wood_lights_1: {
         text: "Turn off the lights in the wood workshop",
         description:
           "Make sure all lights in the wood workshop are turned off to save energy and ensure safety. Check the main overhead lights, task lights at workbenches, and any additional lighting.",
       },
-      wood_machines: {
-        text: "Unplug all wood workshop machines",
+      wood_lights_2: {
+        text: "Turn off the lights in the wood workshop",
         description:
-          "Unplug all power tools and machines including table saws, band saws, sanders, drills, and routers. This prevents electrical hazards and unauthorized use.",
+          "Make sure all lights in the wood workshop are turned off to save energy and ensure safety. Check the main overhead lights, task lights at workbenches, and any additional lighting.",
       },
       wood_door: {
         text: "Close and lock the wood workshop door",
         description:
           "Ensure the wood workshop door is fully closed and locked. Use the provided key to secure the deadbolt. This prevents unauthorized access to tools and materials.",
       },
-      wood_windows: {
+      wood_door_liverpoolstreet: {
         text: "Close all windows in the wood workshop",
         description:
           "Close and latch all windows in the wood workshop. This protects against weather, prevents heat loss, and enhances security. Check both upper and lower windows.",
@@ -76,32 +76,32 @@ const translations = {
         description:
           "Turn off all lighting in the metal workshop including overhead lights, welding area lights, and task lighting. Verify all switches are in the off position.",
       },
-      metal_machines: {
-        text: "Unplug all metal workshop machines",
-        description:
-          "Disconnect all metal working equipment including welders, grinders, drill presses, and lathes. Ensure gas cylinders for welding are turned off and secured.",
-      },
       metal_door: {
         text: "Close and lock the metal workshop door",
         description:
           "Secure the metal workshop by closing and locking the door. Ensure the lock is fully engaged. This protects expensive metalworking equipment and materials.",
-      },
-      metal_windows: {
-        text: "Close all windows in the metal workshop",
-        description:
-          "Close and secure all windows in the metal workshop. This is especially important for fire safety and to prevent dust and debris from entering overnight.",
       },
       common_lights: {
         text: "Turn off all common area lights",
         description:
           "Turn off lights in all common areas including hallways, bathrooms, kitchen, and meeting spaces. Leave only essential security lighting on if required.",
       },
-      heating: {
-        text: "Adjust heating/cooling to night mode",
+      common_door_1: {
+        text: "Lock the main entrance door",
         description:
-          "Set the thermostat to night mode (typically 15°C in winter, off in summer). This saves energy while preventing pipes from freezing. The thermostat is located in the main hallway.",
+          "Ensure the main entrance door is fully closed and locked. Engage both the handle lock and the deadbolt. Verify the door is secure by testing it from the outside.",
       },
-      main_door: {
+      common_door_2: {
+        text: "Lock the main entrance door",
+        description:
+          "Ensure the main entrance door is fully closed and locked. Engage both the handle lock and the deadbolt. Verify the door is secure by testing it from the outside.",
+      },
+      parking_door_1: {
+        text: "Lock the main entrance door",
+        description:
+          "Ensure the main entrance door is fully closed and locked. Engage both the handle lock and the deadbolt. Verify the door is secure by testing it from the outside.",
+      },
+      parking_door_2: {
         text: "Lock the main entrance door",
         description:
           "Ensure the main entrance door is fully closed and locked. Engage both the handle lock and the deadbolt. Verify the door is secure by testing it from the outside.",
@@ -173,63 +173,71 @@ const translations = {
 
     // Checklist Items
     items: {
-      wood_lights: {
-        text: "Éteindre les lumières de l'atelier bois",
+      wood_door_liverpoolstreet: {
+        text: "Fermer et verrouiller la porte et le rideau métalique",
         description:
-          "Assurez-vous que toutes les lumières de l'atelier bois sont éteintes pour économiser l'énergie et assurer la sécurité. Vérifiez les lumières principales au plafond, les lampes de travail aux établis et tout éclairage supplémentaire.",
+          "Fermez et verrouillez la porte et le rideau métalique donnant accès à la rue de Liverpool.",
       },
-      wood_machines: {
-        text: "Débrancher toutes les machines de l'atelier bois",
+      wood_lights_1: {
+        text: "Éteindre les lumières au milieu de l'atelier bois",
         description:
-          "Débranchez tous les outils électriques et machines, y compris les scies à table, scies à ruban, ponceuses, perceuses et défonceuses. Cela prévient les risques électriques et l'utilisation non autorisée.",
+          "Tournez les 3 interrupteurs du panneau électrique vers la gauche.",
+      },
+      wood_lights_2: {
+        text: "Éteindre les lumières a l'entrée de l'atelier bois",
+        description:
+          "Appuyez sur l'interrupteur noir pour éteindre les lumières.",
       },
       wood_door: {
-        text: "Fermer et verrouiller la porte de l'atelier bois",
+        text: "Fermer la porte coupe-feu de l'atelier bois",
         description:
-          "Assurez-vous que la porte de l'atelier bois est complètement fermée et verrouillée. Utilisez la clé fournie pour sécuriser le verrou. Cela empêche l'accès non autorisé aux outils et matériaux.",
-      },
-      wood_windows: {
-        text: "Fermer toutes les fenêtres de l'atelier bois",
-        description:
-          "Fermez et verrouillez toutes les fenêtres de l'atelier bois. Cela protège contre les intempéries, empêche la perte de chaleur et améliore la sécurité. Vérifiez les fenêtres supérieures et inférieures.",
+          "Tirez fermement sur la porte coupe-feu afin de fermer l'atelier bois.",
       },
       metal_lights: {
         text: "Éteindre les lumières de l'atelier métal",
         description:
-          "Éteignez tout l'éclairage de l'atelier métal, y compris les lumières au plafond, les lumières de la zone de soudage et l'éclairage de travail. Vérifiez que tous les interrupteurs sont en position éteinte.",
-      },
-      metal_machines: {
-        text: "Débrancher toutes les machines de l'atelier métal",
-        description:
-          "Déconnectez tous les équipements de travail du métal, y compris les soudeuses, meuleuses, perceuses à colonne et tours. Assurez-vous que les bouteilles de gaz pour le soudage sont fermées et sécurisées.",
+          "Tournez les 3 interrupteurs du panneau électrique vers la gauche.",
       },
       metal_door: {
         text: "Fermer et verrouiller la porte de l'atelier métal",
         description:
-          "Sécurisez l'atelier métal en fermant et verrouillant la porte. Assurez-vous que le verrou est complètement engagé. Cela protège les équipements et matériaux coûteux de travail du métal.",
+          "Fermez et verrouillez la petite porte de l'atelier métal. Assurez-vous que le verrou est complètement engagé.",
       },
-      metal_windows: {
-        text: "Fermer toutes les fenêtres de l'atelier métal",
-        description:
-          "Fermez et sécurisez toutes les fenêtres de l'atelier métal. C'est particulièrement important pour la sécurité incendie et pour empêcher la poussière et les débris d'entrer pendant la nuit.",
+      common_door_1: {
+        text: "Fermer et verrouiller la porte 1 et le rideau métalique",
+        description: "Fermez et verrouillez la porte et le rideau métalique.",
       },
-      common_lights: {
-        text: "Éteindre toutes les lumières des espaces communs",
+      common_lights_1: {
+        text: "Éteindre les lumières au milieu des espaces communs",
         description:
-          "Éteignez les lumières dans tous les espaces communs, y compris les couloirs, salles de bain, cuisine et espaces de réunion. Laissez uniquement l'éclairage de sécurité essentiel allumé si nécessaire.",
+          "Tournez les 3 interrupteurs du panneau électrique vers la gauche.",
       },
-      heating: {
-        text: "Régler le chauffage/climatisation en mode nuit",
-        description:
-          "Réglez le thermostat en mode nuit (généralement 15°C en hiver, éteint en été). Cela économise l'énergie tout en empêchant les tuyaux de geler. Le thermostat est situé dans le couloir principal.",
+      common_door_2: {
+        text: "Fermer et verrouiller la porte 2 et le rideau métalique",
+        description: "Fermez et verrouillez la porte et le rideau métalique.",
       },
-      main_door: {
-        text: "Verrouiller la porte d'entrée principale",
+      common_lights_2: {
+        text: "Éteindre les lumières a l'entrée des espaces communs",
         description:
-          "Assurez-vous que la porte d'entrée principale est complètement fermée et verrouillée. Engagez à la fois la serrure de poignée et le verrou. Vérifiez que la porte est sécurisée en la testant de l'extérieur.",
+          "Appuyez sur l'interrupteur noir pour éteindre les lumières.",
+      },
+      common_door_serigraphy: {
+        text: "Fermer et verrouiller la porte de la serographie donnant accès au parking",
+        description:
+          "Fermez et verrouillez la porte de la serographie donnant accès au parking.",
+      },
+      parking_door_1: {
+        text: "Fermer le portail gris",
+        description:
+          "Tapez le code sur le clavier et attendez le bip de confirmation.",
+      },
+      parking_door_2: {
+        text: "Fermer le portail vert",
+        description:
+          "Tapez le code sur le clavier et attendez le bip de confirmation.",
       },
       alarm: {
-        text: "Activer l'alarme de sécurité",
+        text: "Activer l'alarme",
         description:
           "Activez le système d'alarme de sécurité comme dernière étape. Entrez le code sur le clavier et attendez le bip de confirmation. Vous avez 60 secondes pour sortir après l'activation.",
       },
@@ -294,55 +302,40 @@ const translations = {
 
     // Checklist Items
     items: {
-      wood_lights: {
+      wood_lights_1: {
         text: "Schakel de lichten in de houtworkshop uit",
         description:
           "Zorg ervoor dat alle lichten in de houtworkshop zijn uitgeschakeld om energie te besparen en de veiligheid te waarborgen. Controleer de hoofdverlichting aan het plafond, taakverlichting bij werkbanken en eventuele extra verlichting.",
       },
-      wood_machines: {
-        text: "Haal de stekker uit alle houtworkshop machines",
+      wood_lights_2: {
+        text: "Schakel de lichten in de houtworkshop uit",
         description:
-          "Haal de stekker uit alle elektrisch gereedschap en machines, inclusief tafelzagen, lintzagen, schuurmachines, boren en freesmachines. Dit voorkomt elektrische gevaren en ongeautoriseerd gebruik.",
+          "Zorg ervoor dat alle lichten in de houtworkshop zijn uitgeschakeld om energie te besparen en de veiligheid te waarborgen. Controleer de hoofdverlichting aan het plafond, taakverlichting bij werkbanken en eventuele extra verlichting.",
       },
       wood_door: {
         text: "Sluit en vergrendel de deur van de houtworkshop",
         description:
           "Zorg ervoor dat de deur van de houtworkshop volledig gesloten en vergrendeld is. Gebruik de meegeleverde sleutel om het slot te beveiligen. Dit voorkomt ongeautoriseerde toegang tot gereedschap en materialen.",
       },
-      wood_windows: {
-        text: "Sluit alle ramen in de houtworkshop",
+      wood_door_liverpoolstreet: {
+        text: "Sluit en vergrendel de deur van de houtworkshop",
         description:
-          "Sluit en vergrendel alle ramen in de houtworkshop. Dit beschermt tegen weer, voorkomt warmteverlies en verbetert de beveiliging. Controleer zowel de bovenste als onderste ramen.",
+          "Zorg ervoor dat de deur van de houtworkshop volledig gesloten en vergrendeld is. Gebruik de meegeleverde sleutel om het slot te beveiligen. Dit voorkomt ongeautoriseerde toegang tot gereedschap en materialen.",
       },
       metal_lights: {
         text: "Schakel de lichten in de metaalworkshop uit",
         description:
           "Schakel alle verlichting in de metaalworkshop uit, inclusief plafondverlichting, lasgebied verlichting en taakverlichting. Controleer of alle schakelaars in de uit-positie staan.",
       },
-      metal_machines: {
-        text: "Haal de stekker uit alle metaalworkshop machines",
-        description:
-          "Koppel alle metaalbewerkingsapparatuur los, inclusief lasapparaten, slijpmachines, kolomboormachines en draaibanken. Zorg ervoor dat gasflessen voor lassen zijn afgesloten en beveiligd.",
-      },
       metal_door: {
         text: "Sluit en vergrendel de deur van de metaalworkshop",
         description:
           "Beveilig de metaalworkshop door de deur te sluiten en te vergrendelen. Zorg ervoor dat het slot volledig is ingeschakeld. Dit beschermt dure metaalbewerkingsapparatuur en materialen.",
       },
-      metal_windows: {
-        text: "Sluit alle ramen in de metaalworkshop",
-        description:
-          "Sluit en beveilig alle ramen in de metaalworkshop. Dit is vooral belangrijk voor brandveiligheid en om te voorkomen dat stof en puin 's nachts binnenkomen.",
-      },
       common_lights: {
         text: "Schakel alle lichten in gemeenschappelijke ruimtes uit",
         description:
           "Schakel de lichten uit in alle gemeenschappelijke ruimtes, inclusief gangen, badkamers, keuken en vergaderruimtes. Laat alleen essentiële beveiligingsverlichting aan indien nodig.",
-      },
-      heating: {
-        text: "Stel verwarming/koeling in op nachtmodus",
-        description:
-          "Stel de thermostaat in op nachtmodus (meestal 15°C in de winter, uit in de zomer). Dit bespaart energie terwijl het voorkomt dat leidingen bevriezen. De thermostaat bevindt zich in de hoofdgang.",
       },
       main_door: {
         text: "Vergrendel de hoofdingang",
