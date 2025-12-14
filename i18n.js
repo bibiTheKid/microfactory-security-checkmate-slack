@@ -51,63 +51,65 @@ const translations = {
 
     // Checklist Items
     items: {
-      wood_lights_1: {
-        text: "Turn off the lights in the wood workshop",
+      wood_door_liverpoolstreet: {
+        text: "Close and lock the door and metal shutter",
         description:
-          "Make sure all lights in the wood workshop are turned off to save energy and ensure safety. Check the main overhead lights, task lights at workbenches, and any additional lighting.",
+          "Close and lock the door and metal shutter providing access to Liverpool Street.",
+      },
+      wood_lights_1: {
+        text: "Turn off the lights in the middle of the wood workshop",
+        description: "Turn the 3 switches on the electrical panel to the left.",
       },
       wood_lights_2: {
-        text: "Turn off the lights in the wood workshop",
-        description:
-          "Make sure all lights in the wood workshop are turned off to save energy and ensure safety. Check the main overhead lights, task lights at workbenches, and any additional lighting.",
+        text: "Turn off the lights at the entrance of the wood workshop",
+        description: "Press the black switch to turn off the lights.",
       },
       wood_door: {
-        text: "Close and lock the wood workshop door",
-        description:
-          "Ensure the wood workshop door is fully closed and locked. Use the provided key to secure the deadbolt. This prevents unauthorized access to tools and materials.",
-      },
-      wood_door_liverpoolstreet: {
-        text: "Close all windows in the wood workshop",
-        description:
-          "Close and latch all windows in the wood workshop. This protects against weather, prevents heat loss, and enhances security. Check both upper and lower windows.",
+        text: "Close the fire door of the wood workshop",
+        description: "Pull firmly on the fire door to close the wood workshop.",
       },
       metal_lights: {
         text: "Turn off the lights in the metal workshop",
-        description:
-          "Turn off all lighting in the metal workshop including overhead lights, welding area lights, and task lighting. Verify all switches are in the off position.",
+        description: "Turn the 3 switches on the electrical panel to the left.",
       },
       metal_door: {
         text: "Close and lock the metal workshop door",
         description:
-          "Secure the metal workshop by closing and locking the door. Ensure the lock is fully engaged. This protects expensive metalworking equipment and materials.",
-      },
-      common_lights: {
-        text: "Turn off all common area lights",
-        description:
-          "Turn off lights in all common areas including hallways, bathrooms, kitchen, and meeting spaces. Leave only essential security lighting on if required.",
+          "Close and lock the small door of the metal workshop. Make sure the lock is fully engaged.",
       },
       common_door_1: {
-        text: "Lock the main entrance door",
-        description:
-          "Ensure the main entrance door is fully closed and locked. Engage both the handle lock and the deadbolt. Verify the door is secure by testing it from the outside.",
+        text: "Close and lock door 1 and the metal shutter",
+        description: "Close and lock the door and the metal shutter.",
+      },
+      common_lights_1: {
+        text: "Turn off the lights in the middle of the common areas",
+        description: "Turn the 3 switches on the electrical panel to the left.",
       },
       common_door_2: {
-        text: "Lock the main entrance door",
+        text: "Close and lock door 2 and the metal shutter",
+        description: "Close and lock the door and the metal shutter.",
+      },
+      common_lights_2: {
+        text: "Turn off the lights at the entrance of the common areas",
+        description: "Press the black switch to turn off the lights.",
+      },
+      common_door_serigraphy: {
+        text: "Close and lock the serigraphy door providing access to the parking",
         description:
-          "Ensure the main entrance door is fully closed and locked. Engage both the handle lock and the deadbolt. Verify the door is secure by testing it from the outside.",
+          "Close and lock the serigraphy door providing access to the parking.",
       },
       parking_door_1: {
-        text: "Lock the main entrance door",
+        text: "Close the gray gate",
         description:
-          "Ensure the main entrance door is fully closed and locked. Engage both the handle lock and the deadbolt. Verify the door is secure by testing it from the outside.",
+          "Enter the code on the keypad and wait for the confirmation beep.",
       },
       parking_door_2: {
-        text: "Lock the main entrance door",
+        text: "Close the green gate",
         description:
-          "Ensure the main entrance door is fully closed and locked. Engage both the handle lock and the deadbolt. Verify the door is secure by testing it from the outside.",
+          "Enter the code on the keypad and wait for the confirmation beep.",
       },
       alarm: {
-        text: "Activate the security alarm",
+        text: "Activate the alarm",
         description:
           "Activate the security alarm system as the final step. Enter the code on the keypad and wait for the confirmation beep. You have 60 seconds to exit after activation.",
       },
@@ -302,48 +304,71 @@ const translations = {
 
     // Checklist Items
     items: {
-      wood_lights_1: {
-        text: "Schakel de lichten in de houtworkshop uit",
+      wood_door_liverpoolstreet: {
+        text: "Sluit en vergrendel de deur en het metalen rolluik",
         description:
-          "Zorg ervoor dat alle lichten in de houtworkshop zijn uitgeschakeld om energie te besparen en de veiligheid te waarborgen. Controleer de hoofdverlichting aan het plafond, taakverlichting bij werkbanken en eventuele extra verlichting.",
+          "Sluit en vergrendel de deur en het metalen rolluik die toegang geven tot Liverpool Street.",
+      },
+      wood_lights_1: {
+        text: "Schakel de lichten in het midden van de houtworkshop uit",
+        description:
+          "Draai de 3 schakelaars op het elektriciteitsschakelbord naar links.",
       },
       wood_lights_2: {
-        text: "Schakel de lichten in de houtworkshop uit",
+        text: "Schakel de lichten bij de ingang van de houtworkshop uit",
         description:
-          "Zorg ervoor dat alle lichten in de houtworkshop zijn uitgeschakeld om energie te besparen en de veiligheid te waarborgen. Controleer de hoofdverlichting aan het plafond, taakverlichting bij werkbanken en eventuele extra verlichting.",
+          "Druk op de zwarte schakelaar om de lichten uit te schakelen.",
       },
       wood_door: {
-        text: "Sluit en vergrendel de deur van de houtworkshop",
+        text: "Sluit de brandwerende deur van de houtworkshop",
         description:
-          "Zorg ervoor dat de deur van de houtworkshop volledig gesloten en vergrendeld is. Gebruik de meegeleverde sleutel om het slot te beveiligen. Dit voorkomt ongeautoriseerde toegang tot gereedschap en materialen.",
-      },
-      wood_door_liverpoolstreet: {
-        text: "Sluit en vergrendel de deur van de houtworkshop",
-        description:
-          "Zorg ervoor dat de deur van de houtworkshop volledig gesloten en vergrendeld is. Gebruik de meegeleverde sleutel om het slot te beveiligen. Dit voorkomt ongeautoriseerde toegang tot gereedschap en materialen.",
+          "Trek stevig aan de brandwerende deur om de houtworkshop te sluiten.",
       },
       metal_lights: {
         text: "Schakel de lichten in de metaalworkshop uit",
         description:
-          "Schakel alle verlichting in de metaalworkshop uit, inclusief plafondverlichting, lasgebied verlichting en taakverlichting. Controleer of alle schakelaars in de uit-positie staan.",
+          "Draai de 3 schakelaars op het elektriciteitsschakelbord naar links.",
       },
       metal_door: {
         text: "Sluit en vergrendel de deur van de metaalworkshop",
         description:
-          "Beveilig de metaalworkshop door de deur te sluiten en te vergrendelen. Zorg ervoor dat het slot volledig is ingeschakeld. Dit beschermt dure metaalbewerkingsapparatuur en materialen.",
+          "Sluit en vergrendel de kleine deur van de metaalworkshop. Zorg ervoor dat het slot volledig is ingeschakeld.",
       },
-      common_lights: {
-        text: "Schakel alle lichten in gemeenschappelijke ruimtes uit",
-        description:
-          "Schakel de lichten uit in alle gemeenschappelijke ruimtes, inclusief gangen, badkamers, keuken en vergaderruimtes. Laat alleen essentiële beveiligingsverlichting aan indien nodig.",
+      common_door_1: {
+        text: "Sluit en vergrendel deur 1 en het metalen rolluik",
+        description: "Sluit en vergrendel de deur en het metalen rolluik.",
       },
-      main_door: {
-        text: "Vergrendel de hoofdingang",
+      common_lights_1: {
+        text: "Schakel de lichten in het midden van de gemeenschappelijke ruimtes uit",
         description:
-          "Zorg ervoor dat de hoofdingang volledig gesloten en vergrendeld is. Schakel zowel het handvatslot als het veiligheidsslot in. Controleer of de deur veilig is door deze van buitenaf te testen.",
+          "Draai de 3 schakelaars op het elektriciteitsschakelbord naar links.",
+      },
+      common_door_2: {
+        text: "Sluit en vergrendel deur 2 en het metalen rolluik",
+        description: "Sluit en vergrendel de deur en het metalen rolluik.",
+      },
+      common_lights_2: {
+        text: "Schakel de lichten bij de ingang van de gemeenschappelijke ruimtes uit",
+        description:
+          "Druk op de zwarte schakelaar om de lichten uit te schakelen.",
+      },
+      common_door_serigraphy: {
+        text: "Sluit en vergrendel de serigraficdeur die toegang geeft tot de parkeerplaats",
+        description:
+          "Sluit en vergrendel de serigraficdeur die toegang geeft tot de parkeerplaats.",
+      },
+      parking_door_1: {
+        text: "Sluit het grijze hek",
+        description:
+          "Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep.",
+      },
+      parking_door_2: {
+        text: "Sluit het groene hek",
+        description:
+          "Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep.",
       },
       alarm: {
-        text: "Activeer het beveiligingsalarm",
+        text: "Activeer het alarm",
         description:
           "Activeer het beveiligingsalarmsysteem als laatste stap. Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep. U heeft 60 seconden om te vertrekken na activering.",
       },
