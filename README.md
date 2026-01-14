@@ -196,6 +196,10 @@ microfactory-security-checkmate-slack/
 └── README.md             # This file
 ```
 
+### Photos
+
+The photos are stored on postimg.cc: https://postimg.cc/gallery/0DJ34dv
+
 ### Customizing the Checklist
 
 To add, remove, or modify checklist items, edit `checklist-data.js`:

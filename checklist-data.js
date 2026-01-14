@@ -6,98 +6,98 @@ const checklistItems = [
     category: "Wood Workshop",
     emoji: "🚪",
     imageUrl:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/SsHKryV3/1-wood-liverpool-street.jpg",
   },
   {
     id: "wood_lights_1",
     category: "Wood Workshop",
     emoji: "💡",
     imageUrl:
-      "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/8575MFdK/2-wood-light.jpg",
   },
   {
     id: "wood_lights_2",
     category: "Wood Workshop",
     emoji: "💡",
     imageUrl:
-      "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/xCXCMky2/3-wood-light.jpg",
   },
   {
     id: "wood_door",
     category: "Wood Workshop",
     emoji: "🚪",
     imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/tJ9M86rN/4-wood-stop-fire-door.jpg",
   },
   {
     id: "metal_lights",
     category: "Metal Workshop",
     emoji: "💡",
     imageUrl:
-      "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/tJ9M86rt/5-metal-light.jpg",
   },
   {
     id: "metal_door",
     category: "Metal Workshop",
     emoji: "🚪",
     imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/cHvHwK75/6-metal-door.jpg",
   },
   {
     id: "common_door_1",
     category: "Common Areas",
     emoji: "🔐",
     imageUrl:
-      "https://images.unsplash.com/photo-1582139329536-e7284fece509?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/W3d3gD6V/7-common-door.jpg",
   },
   {
     id: "common_lights_1",
     category: "Common Areas",
     emoji: "💡",
     imageUrl:
-      "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/0QzQD6GB/8-common-light.jpg",
   },
   {
     id: "common_door_2",
     category: "Common Areas",
     emoji: "🔐",
     imageUrl:
-      "https://images.unsplash.com/photo-1582139329536-e7284fece509?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/k4L5cnwh/9-common-door.jpg",
   },
   {
     id: "common_lights_2",
     category: "Common Areas",
     emoji: "💡",
     imageUrl:
-      "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/qRNRytcF/10-common-light.jpg",
   },
   {
     id: "common_door_serigraphy",
     category: "Common Areas",
     emoji: "🔐",
     imageUrl:
-      "https://images.unsplash.com/photo-1582139329536-e7284fece509?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/V6J6nS92/11-common-serigraphy-2.jpg",
   },
   {
     id: "parking_door_1",
     category: "Security",
     emoji: "🚨",
     imageUrl:
-      "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=800&auto=format&fit=crop",
-  },
-  {
-    id: "parking_door_2",
-    category: "Security",
-    emoji: "🚨",
-    imageUrl:
-      "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/QtFt1BkZ/12-parking-door.jpg",
   },
   {
     id: "alarm",
     category: "Security",
     emoji: "🚨",
     imageUrl:
-      "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=800&auto=format&fit=crop",
+      "https://i.postimg.cc/TwBP9RQZ/13-alarm.jpg",
+  },
+  {
+    id: "parking_door_2",
+    category: "Security",
+    emoji: "🚨",
+    imageUrl:
+      "https://i.postimg.cc/vmz9366j/14-parking-door.jpg",
   },
 ];
 

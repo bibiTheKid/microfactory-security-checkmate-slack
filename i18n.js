@@ -51,6 +51,7 @@ const translations = {
 
     // Checklist Items
     items: {
+      // TODO: check how to close the shutter
       wood_door_liverpoolstreet: {
         text: "Close and lock the door and metal shutter on Liverpool Street",
         description:
@@ -68,18 +69,20 @@ const translations = {
         text: "Close the fire door of the wood workshop",
         description: "Pull firmly on the fire door to close the wood workshop.",
       },
+      // TODO: take picture
       metal_lights: {
         text: "Turn off the lights in the metal workshop",
         description: "Turn the 3 switches on the electrical panel to the left.",
       },
+      // TODO: retake picture with lights off
       metal_door: {
         text: "Close and lock the metal workshop door",
         description:
           "Close and lock the small door of the metal workshop. Make sure the lock is fully engaged.",
       },
       common_door_1: {
-        text: "Close and lock door 1 and the metal shutter",
-        description: "Lock the door and close the metal shutter.",
+        text: "Close and lock door 1 and the shutter",
+        description: "Lock the door and close the shutter.",
       },
       common_lights_1: {
         text: "Turn off the lights in the middle of the common areas",
@@ -89,29 +92,31 @@ const translations = {
         text: "Close and lock door 2 and the metal shutter",
         description: "Lock the door and close the metal shutter.",
       },
+      // TODO: check if needed
       common_lights_2: {
         text: "Turn off the lights at the entrance of the common areas",
         description: "Press the black switch to turn off the lights.",
       },
       common_door_serigraphy: {
-        text: "Close and lock the serigraphy door providing access to the parking",
+        text: "Close the serigraphy door providing access to the parking",
         description:
-          "Close and lock the serigraphy door providing access to the parking.",
+          'Go through the "PAINT LAB" door, then close the serigraphy door providing access to the parking.',
       },
       parking_door_1: {
         text: "Close the gray gate",
         description:
           "Enter the code on the keypad and wait for the confirmation beep.",
       },
-      parking_door_2: {
-        text: "Close the green gate",
-        description:
-          "Enter the code on the keypad and wait for the confirmation beep.",
-      },
+      // TODO: provide more details and retake picture
       alarm: {
         text: "Activate the alarm",
         description:
           "Enter the code on the keypad and wait for the confirmation beep. You have 60 seconds to exit after activation.",
+      },
+      parking_door_2: {
+        text: "Close the green gate",
+        description:
+          "Enter the code on the keypad and wait for the confirmation beep.",
       },
     },
 
@@ -175,6 +180,7 @@ const translations = {
 
     // Checklist Items
     items: {
+      // TODO: check how to close the shutter
       wood_door_liverpoolstreet: {
         text: "Fermer et verrouiller la porte et le rideau métalique de rue de Liverpool",
         description:
@@ -195,19 +201,21 @@ const translations = {
         description:
           "Tirez fermement sur la porte coupe-feu afin de fermer l'atelier bois.",
       },
+      // TODO: take picture
       metal_lights: {
         text: "Éteindre les lumières de l'atelier métal",
         description:
           "Tournez les 3 interrupteurs du panneau électrique vers la gauche.",
       },
+      // TODO: retake picture with lights off
       metal_door: {
         text: "Fermer et verrouiller la porte de l'atelier métal",
         description:
           "Fermez et verrouillez la petite porte de l'atelier métal. Assurez-vous que le verrou est complètement engagé.",
       },
       common_door_1: {
-        text: "Fermer et verrouiller la porte 1 et le rideau métalique",
-        description: "Verrouillez la porte et fermez le rideau métalique.",
+        text: "Fermer et verrouiller la porte 1 et le rideau",
+        description: "Verrouillez la porte et fermez le rideau.",
       },
       common_lights_1: {
         text: "Éteindre les lumières au milieu des espaces communs",
@@ -218,30 +226,32 @@ const translations = {
         text: "Fermer et verrouiller la porte 2 et le rideau métalique",
         description: "Verrouillez la porte et fermez le rideau métalique.",
       },
+      // TODO: check if neeeded
       common_lights_2: {
         text: "Éteindre les lumières a l'entrée des espaces communs",
         description:
           "Appuyez sur l'interrupteur noir pour éteindre les lumières.",
       },
       common_door_serigraphy: {
-        text: "Fermer et verrouiller la porte de la serographie donnant accès au parking",
+        text: "Fermer la porte de la serographie donnant accès au parking",
         description:
-          "Fermez et verrouillez la porte de la serographie donnant accès au parking.",
+          'Passez par la porte "LABO PEINTURE", puis fermez la porte de la serographie donnant accès au parking.',
       },
       parking_door_1: {
         text: "Fermer le portail gris",
         description:
           "Tapez le code sur le clavier et attendez le bip de confirmation.",
       },
-      parking_door_2: {
-        text: "Fermer le portail vert",
-        description:
-          "Tapez le code sur le clavier et attendez le bip de confirmation.",
-      },
+      // TODO: provide more details and retake picture
       alarm: {
         text: "Activer l'alarme",
         description:
           "Entrez le code sur le clavier et attendez le bip de confirmation. Vous avez 60 secondes pour sortir après l'activation.",
+      },
+      parking_door_2: {
+        text: "Fermer le portail vert",
+        description:
+          "Tapez le code sur le clavier et attendez le bip de confirmation.",
       },
     },
 
@@ -304,6 +314,7 @@ const translations = {
 
     // Checklist Items
     items: {
+      // TODO: check how to close the shutter
       wood_door_liverpoolstreet: {
         text: "Sluit en vergrendel de deur en het metalen rolluik van Liverpool Street",
         description:
@@ -324,19 +335,21 @@ const translations = {
         description:
           "Trek stevig aan de brandwerende deur om de houtworkshop te sluiten.",
       },
+      // TODO: take picture
       metal_lights: {
         text: "Schakel de lichten in de metaalworkshop uit",
         description:
           "Draai de 3 schakelaars op het elektriciteitsschakelbord naar links.",
       },
+      // TODO: retake picture with lights off
       metal_door: {
         text: "Sluit en vergrendel de deur van de metaalworkshop",
         description:
           "Sluit en vergrendel de kleine deur van de metaalworkshop. Zorg ervoor dat het slot volledig is ingeschakeld.",
       },
       common_door_1: {
-        text: "Sluit en vergrendel deur 1 en het metalen rolluik",
-        description: "Vergrendel de deur en sluit het metalen rolluik.",
+        text: "Sluit en vergrendel deur 1 en het rolluik",
+        description: "Vergrendel de deur en sluit het rolluik.",
       },
       common_lights_1: {
         text: "Schakel de lichten in het midden van de gemeenschappelijke ruimtes uit",
@@ -347,30 +360,32 @@ const translations = {
         text: "Sluit en vergrendel deur 2 en het metalen rolluik",
         description: "Vergrendel de deur en sluit het metalen rolluik.",
       },
+      // TODO: check if needed
       common_lights_2: {
         text: "Schakel de lichten bij de ingang van de gemeenschappelijke ruimtes uit",
         description:
           "Druk op de zwarte schakelaar om de lichten uit te schakelen.",
       },
       common_door_serigraphy: {
-        text: "Sluit en vergrendel de serigraficdeur die toegang geeft tot de parkeerplaats",
+        text: "Sluit de serigraficdeur die toegang geeft tot de parkeerplaats",
         description:
-          "Sluit en vergrendel de serigraficdeur die toegang geeft tot de parkeerplaats.",
+          'Ga door de deur "VERFLAB", sluit vervolgens de serigraficdeur die toegang geeft tot de parkeerplaats.',
       },
       parking_door_1: {
         text: "Sluit het grijze hek",
         description:
           "Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep.",
       },
-      parking_door_2: {
-        text: "Sluit het groene hek",
-        description:
-          "Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep.",
-      },
+      // TODO: provide more details and retake picture
       alarm: {
         text: "Activeer het alarm",
         description:
           "Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep. U heeft 60 seconden om te vertrekken na activering.",
+      },
+      parking_door_2: {
+        text: "Sluit het groene hek",
+        description:
+          "Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep.",
       },
     },
 
