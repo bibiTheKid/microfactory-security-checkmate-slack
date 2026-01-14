@@ -198,7 +198,7 @@ microfactory-security-checkmate-slack/
 
 ### Photos
 
-The photos are stored on postimg.cc: https://postimg.cc/gallery/0DJ34dv
+The photos are stored on https://imagekit.io/
 
 ### Customizing the Checklist
 

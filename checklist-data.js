@@ -6,98 +6,98 @@ const checklistItems = [
     category: "Wood Workshop",
     emoji: "🚪",
     imageUrl:
-      "https://i.postimg.cc/SsHKryV3/1-wood-liverpool-street.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/1-wood-liverpool-street.jpg",
   },
   {
     id: "wood_lights_1",
     category: "Wood Workshop",
     emoji: "💡",
     imageUrl:
-      "https://i.postimg.cc/8575MFdK/2-wood-light.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/2-wood-light.jpeg",
   },
   {
     id: "wood_lights_2",
     category: "Wood Workshop",
     emoji: "💡",
     imageUrl:
-      "https://i.postimg.cc/xCXCMky2/3-wood-light.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/3-wood-light.jpeg",
   },
   {
     id: "wood_door",
     category: "Wood Workshop",
     emoji: "🚪",
     imageUrl:
-      "https://i.postimg.cc/tJ9M86rN/4-wood-stop-fire-door.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/4-wood-stop-fire-door.jpeg",
   },
   {
     id: "metal_lights",
     category: "Metal Workshop",
     emoji: "💡",
     imageUrl:
-      "https://i.postimg.cc/tJ9M86rt/5-metal-light.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/5-metal-light.jpeg",
   },
   {
     id: "metal_door",
     category: "Metal Workshop",
     emoji: "🚪",
     imageUrl:
-      "https://i.postimg.cc/cHvHwK75/6-metal-door.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/6-metal-door.jpeg",
   },
   {
     id: "common_door_1",
     category: "Common Areas",
     emoji: "🔐",
     imageUrl:
-      "https://i.postimg.cc/W3d3gD6V/7-common-door.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/7-common-door.jpeg",
   },
   {
     id: "common_lights_1",
     category: "Common Areas",
     emoji: "💡",
     imageUrl:
-      "https://i.postimg.cc/0QzQD6GB/8-common-light.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/8-common-light.jpeg",
   },
   {
     id: "common_door_2",
     category: "Common Areas",
     emoji: "🔐",
     imageUrl:
-      "https://i.postimg.cc/k4L5cnwh/9-common-door.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/9-common-door.jpeg",
   },
   {
     id: "common_lights_2",
     category: "Common Areas",
     emoji: "💡",
     imageUrl:
-      "https://i.postimg.cc/qRNRytcF/10-common-light.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/10-common-light.jpeg",
   },
   {
     id: "common_door_serigraphy",
     category: "Common Areas",
     emoji: "🔐",
     imageUrl:
-      "https://i.postimg.cc/V6J6nS92/11-common-serigraphy-2.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/11-common-serigraphy-2.jpeg",
   },
   {
     id: "parking_door_1",
     category: "Security",
     emoji: "🚨",
     imageUrl:
-      "https://i.postimg.cc/QtFt1BkZ/12-parking-door.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/12-parking%20door.jpeg",
   },
   {
     id: "alarm",
     category: "Security",
     emoji: "🚨",
     imageUrl:
-      "https://i.postimg.cc/TwBP9RQZ/13-alarm.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/13-alarm.jpeg",
   },
   {
     id: "parking_door_2",
     category: "Security",
     emoji: "🚨",
     imageUrl:
-      "https://i.postimg.cc/vmz9366j/14-parking-door.jpg",
+      "https://ik.imagekit.io/eeusd3jua/MicroFactory/14-parking-door.jpeg",
   },
 ];
 
