@@ -52,9 +52,9 @@ const translations = {
     // Checklist Items
     items: {
       wood_door_liverpoolstreet: {
-        text: "Close and lock the door and metal shutter",
+        text: "Close and lock the door and metal shutter on Liverpool Street",
         description:
-          "Close and lock the door and metal shutter providing access to Liverpool Street.",
+          "Lock the door and close the metal shutter providing access to Liverpool Street.",
       },
       wood_lights_1: {
         text: "Turn off the lights in the middle of the wood workshop",
@@ -79,15 +79,15 @@ const translations = {
       },
       common_door_1: {
         text: "Close and lock door 1 and the metal shutter",
-        description: "Close and lock the door and the metal shutter.",
+        description: "Lock the door and close the metal shutter.",
       },
       common_lights_1: {
         text: "Turn off the lights in the middle of the common areas",
-        description: "Turn the 3 switches on the electrical panel to the left.",
+        description: "Turn all the switches on the electrical panel to the left.",
       },
       common_door_2: {
         text: "Close and lock door 2 and the metal shutter",
-        description: "Close and lock the door and the metal shutter.",
+        description: "Lock the door and close the metal shutter.",
       },
       common_lights_2: {
         text: "Turn off the lights at the entrance of the common areas",
@@ -111,7 +111,7 @@ const translations = {
       alarm: {
         text: "Activate the alarm",
         description:
-          "Activate the security alarm system as the final step. Enter the code on the keypad and wait for the confirmation beep. You have 60 seconds to exit after activation.",
+          "Enter the code on the keypad and wait for the confirmation beep. You have 60 seconds to exit after activation.",
       },
     },
 
@@ -176,9 +176,9 @@ const translations = {
     // Checklist Items
     items: {
       wood_door_liverpoolstreet: {
-        text: "Fermer et verrouiller la porte et le rideau métalique",
+        text: "Fermer et verrouiller la porte et le rideau métalique de rue de Liverpool",
         description:
-          "Fermez et verrouillez la porte et le rideau métalique donnant accès à la rue de Liverpool.",
+          "Verrouillez la porte et fermez le rideau métalique donnant accès à la rue de Liverpool.",
       },
       wood_lights_1: {
         text: "Éteindre les lumières au milieu de l'atelier bois",
@@ -207,16 +207,16 @@ const translations = {
       },
       common_door_1: {
         text: "Fermer et verrouiller la porte 1 et le rideau métalique",
-        description: "Fermez et verrouillez la porte et le rideau métalique.",
+        description: "Verrouillez la porte et fermez le rideau métalique.",
       },
       common_lights_1: {
         text: "Éteindre les lumières au milieu des espaces communs",
         description:
-          "Tournez les 3 interrupteurs du panneau électrique vers la gauche.",
+          "Tournez tous les interrupteurs du panneau électrique vers la gauche.",
       },
       common_door_2: {
         text: "Fermer et verrouiller la porte 2 et le rideau métalique",
-        description: "Fermez et verrouillez la porte et le rideau métalique.",
+        description: "Verrouillez la porte et fermez le rideau métalique.",
       },
       common_lights_2: {
         text: "Éteindre les lumières a l'entrée des espaces communs",
@@ -241,7 +241,7 @@ const translations = {
       alarm: {
         text: "Activer l'alarme",
         description:
-          "Activez le système d'alarme de sécurité comme dernière étape. Entrez le code sur le clavier et attendez le bip de confirmation. Vous avez 60 secondes pour sortir après l'activation.",
+          "Entrez le code sur le clavier et attendez le bip de confirmation. Vous avez 60 secondes pour sortir après l'activation.",
       },
     },
 
@@ -305,9 +305,9 @@ const translations = {
     // Checklist Items
     items: {
       wood_door_liverpoolstreet: {
-        text: "Sluit en vergrendel de deur en het metalen rolluik",
+        text: "Sluit en vergrendel de deur en het metalen rolluik van Liverpool Street",
         description:
-          "Sluit en vergrendel de deur en het metalen rolluik die toegang geven tot Liverpool Street.",
+          "Vergrendel de deur en sluit het metalen rolluik dat toegang geeft tot Liverpool Street.",
       },
       wood_lights_1: {
         text: "Schakel de lichten in het midden van de houtworkshop uit",
@@ -336,16 +336,16 @@ const translations = {
       },
       common_door_1: {
         text: "Sluit en vergrendel deur 1 en het metalen rolluik",
-        description: "Sluit en vergrendel de deur en het metalen rolluik.",
+        description: "Vergrendel de deur en sluit het metalen rolluik.",
       },
       common_lights_1: {
         text: "Schakel de lichten in het midden van de gemeenschappelijke ruimtes uit",
         description:
-          "Draai de 3 schakelaars op het elektriciteitsschakelbord naar links.",
+          "Draai alle schakelaars op het elektriciteitsschakelbord naar links.",
       },
       common_door_2: {
         text: "Sluit en vergrendel deur 2 en het metalen rolluik",
-        description: "Sluit en vergrendel de deur en het metalen rolluik.",
+        description: "Vergrendel de deur en sluit het metalen rolluik.",
       },
       common_lights_2: {
         text: "Schakel de lichten bij de ingang van de gemeenschappelijke ruimtes uit",
@@ -370,7 +370,7 @@ const translations = {
       alarm: {
         text: "Activeer het alarm",
         description:
-          "Activeer het beveiligingsalarmsysteem als laatste stap. Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep. U heeft 60 seconden om te vertrekken na activering.",
+          "Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep. U heeft 60 seconden om te vertrekken na activering.",
       },
     },
 

@@ -1,0 +1,16 @@
+Item ID,Text,Description
+wood_door_liverpoolstreet,Fermer et verrouiller la porte et le rideau métalique de rue de Liverpool,Verrouillez la porte et fermez le rideau métalique donnant accès à la rue de Liverpool.
+wood_lights_1,Éteindre les lumières au milieu de l'atelier bois,Tournez les 3 interrupteurs du panneau électrique vers la gauche.
+wood_lights_2,Éteindre les lumières a l'entrée de l'atelier bois,Appuyez sur l'interrupteur noir pour éteindre les lumières.
+wood_door,Fermer la porte coupe-feu de l'atelier bois,Tirez fermement sur la porte coupe-feu afin de fermer l'atelier bois.
+metal_lights,Éteindre les lumières de l'atelier métal,Tournez les 3 interrupteurs du panneau électrique vers la gauche.
+metal_door,Fermer et verrouiller la porte de l'atelier métal,Fermez et verrouillez la petite porte de l'atelier métal. Assurez-vous que le verrou est complètement engagé.
+common_door_1,Fermer et verrouiller la porte 1 et le rideau métalique,Verrouillez la porte et fermez le rideau métalique.
+common_lights_1,Éteindre les lumières au milieu des espaces communs,Tournez tous les interrupteurs du panneau électrique vers la gauche.
+common_door_2,Fermer et verrouiller la porte 2 et le rideau métalique,Verrouillez la porte et fermez le rideau métalique.
+common_lights_2,Éteindre les lumières a l'entrée des espaces communs,Appuyez sur l'interrupteur noir pour éteindre les lumières.
+common_door_serigraphy,Fermer et verrouiller la porte de la serographie donnant accès au parking,Fermez et verrouillez la porte de la serographie donnant accès au parking.
+parking_door_1,Fermer le portail gris,Tapez le code sur le clavier et attendez le bip de confirmation.
+parking_door_2,Fermer le portail vert,Tapez le code sur le clavier et attendez le bip de confirmation.
+alarm,Activer l'alarme,Entrez le code sur le clavier et attendez le bip de confirmation. Vous avez 60 secondes pour sortir après l'activation.
+
