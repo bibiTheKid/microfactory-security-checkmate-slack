@@ -1,16 +1,28 @@
 Item ID,Text,Description
-wood_door_liverpoolstreet,Fermer et verrouiller la porte et le rideau métalique de rue de Liverpool,Verrouillez la porte et fermez le rideau métalique donnant accès à la rue de Liverpool.
-wood_lights_1,Éteindre les lumières au milieu de l'atelier bois,Tournez les 3 interrupteurs du panneau électrique vers la gauche.
+wood_door_liverpoolstreet,Fermer la porte et les rideaux de la rue de Liverpool,"(1) Fermez le rideau intérieur en appuyant sur la fleche du bas. Si cela ne fonctionne pas, il faut allumer le boitier en le mettant en position 1.
+
+(2) Fermez le rideau extérieur en tournant la clé du boitier du mur de droite vers la gauche.
+
+(3) Si la porte n'est pas déjà verrouillée, verrouillez la à l'aide de la clé posée sur le boitier permettant de fermer le rideau extérieur."
+wood_lights_1,Éteindre les lumières au milieu de l'atelier bois,Tournez les 3 interrupteurs du panneau électrique vers la droite (position 0).
 wood_lights_2,Éteindre les lumières a l'entrée de l'atelier bois,Appuyez sur l'interrupteur noir pour éteindre les lumières.
 wood_door,Fermer la porte coupe-feu de l'atelier bois,Tirez fermement sur la porte coupe-feu afin de fermer l'atelier bois.
-metal_lights,Éteindre les lumières de l'atelier métal,Tournez les 3 interrupteurs du panneau électrique vers la gauche.
-metal_door,Fermer et verrouiller la porte de l'atelier métal,Fermez et verrouillez la petite porte de l'atelier métal. Assurez-vous que le verrou est complètement engagé.
-common_door_1,Fermer et verrouiller la porte 1 et le rideau,Verrouillez la porte et fermez le rideau.
-common_lights_1,Éteindre les lumières au milieu des espaces communs,Tournez tous les interrupteurs du panneau électrique vers la gauche.
-common_door_2,Fermer et verrouiller la porte 2 et le rideau métalique,Verrouillez la porte et fermez le rideau métalique.
-common_lights_2,Éteindre les lumières a l'entrée des espaces communs,Appuyez sur l'interrupteur noir pour éteindre les lumières.
-common_door_serigraphy,Fermer la porte de la serographie donnant accès au parking,"Passez par la porte ""LABO PEINTURE"", puis fermez la porte de la serographie donnant accès au parking."
-parking_door_1,Fermer le portail gris,Tapez le code sur le clavier et attendez le bip de confirmation.
-alarm,Activer l'alarme,Entrez le code sur le clavier et attendez le bip de confirmation. Vous avez 60 secondes pour sortir après l'activation.
-parking_door_2,Fermer le portail vert,Tapez le code sur le clavier et attendez le bip de confirmation.
+metal_back_door,Verrouiller la porte au fond de l'atelier métal,Tirez fermement la porte et fermez le verrou. Assurez-vous que le verrou est complètement engagé.
+metal_lights,Éteindre les lumières de l'atelier métal,Tournez les 2 interrupteurs du panneau électrique vers la droite (position 0).
+metal_door,Fermer la porte et le rideau de l'atelier métal,Verrouillez la porte et fermez le rideau
+common_door_1,Fermer la porte 1 et le rideau intérieur blanc,"(1) Fermez le rideau intérieur blanc appuyant sur la fleche du bas.
+
+(2) Si la clé est présente sur la porte, verrouillez la porte."
+common_lights_1,Éteindre les lumières dans le coin des espaces communs,Tournez tous les interrupteurs du panneau électrique vers la droite (position 0). Ce panneau électrique est situéx dans le coin droit lorsque vous regardez en direction de l'atelier métal.
+common_lights_2,Éteindre les lumières au milieu des espaces communs,Tournez tous les interrupteurs du panneau électrique vers la droite (position 0). Ce panneau électrique est situé au milieu du mur gauche lorsque vous regardez le rideau métalique donnant sur le parking.
+common_lights_3,Éteindre la lumière de la sériographie,Appuyez sur l'interrupteur situé a gauche du rideau métalique donnant sur le parking. Cet interrupteur éteint la lumière de la sérigraphie située a droite du rideau métalique.
+common_door_2,Fermer la porte 2 et le rideau métalique,"(1) Fermez le rideau métalique appuyant sur la fleche du bas.
+
+(2) Verrouillez la porte."
+common_door_serigraphy,Fermer la porte de la serographie donnant accès au parking,"Passez par la porte ""LABO PEINTURE"", puis fermez la porte de la serographie donnant accès au parking. Il n'y a pas de verrou, il suffit de laisser la porte se refermer."
+parking_door_1,Fermer le portail vert,Tapez le code sur le clavier et attendez le bip de confirmation.
+alarm,Activer l'alarme,"Ouvrez le boitier gris et entrez le code à 4 chiffres suivi de la lettre 'A'. L'ecran affiche alors des chiffres correspondant a des zones. La Microfactory est la zone '8'. Si vous avez effectué tous les points précendents, un 'R' apparait sous le chiffre '8'. Dans ce cas, vous pouvez armer l'alarme en entrant a nouveau le code à 4 chiffres suivi de '8' et 'ent'. Vous avez 90 secondes pour fermer le portail.
+
+Si un 'F' apparait sous le chiffre '8' c'est que l'une des étapes n'est pas correctement effectuée et vous devez retourner dans la Microfactory pour revérifier chaque point."
+parking_door_2,Fermer le portail gris,Tapez le code sur le clavier et attendez que le portail soit complétement fermé.
 

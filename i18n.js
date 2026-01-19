@@ -53,13 +53,14 @@ const translations = {
     items: {
       // TODO: check how to close the shutter
       wood_door_liverpoolstreet: {
-        text: "Close and lock the door and metal shutter on Liverpool Street",
+        text: "Close the door and shutters on Liverpool Street",
         description:
-          "Lock the door and close the metal shutter providing access to Liverpool Street.",
+          "(1) Close the inner shutter by pressing the down arrow. If it doesn't work, turn on the control box by setting it to position 1.\n\n(2) Close the outer shutter by turning the key on the control box on the right wall from right to left.\n\n(3) If the door is not already locked, lock it using the key placed on the control box for closing the outer shutter.",
       },
       wood_lights_1: {
         text: "Turn off the lights in the middle of the wood workshop",
-        description: "Turn the 3 switches on the electrical panel to the left.",
+        description:
+          "Turn the 3 switches on the electrical panel to the right (position 0).",
       },
       wood_lights_2: {
         text: "Turn off the lights at the entrance of the wood workshop",
@@ -69,41 +70,52 @@ const translations = {
         text: "Close the fire door of the wood workshop",
         description: "Pull firmly on the fire door to close the wood workshop.",
       },
-      // TODO: take picture
+      metal_back_door: {
+        text: "Lock the door at the back of the metal workshop",
+        description:
+          "Pull the door firmly and close the lock. Make sure the lock is fully engaged.",
+      },
       metal_lights: {
         text: "Turn off the lights in the metal workshop",
-        description: "Turn the 3 switches on the electrical panel to the left.",
-      },
-      // TODO: retake picture with lights off
-      metal_door: {
-        text: "Close and lock the metal workshop door",
         description:
-          "Close and lock the small door of the metal workshop. Make sure the lock is fully engaged.",
+          "Turn the 2 switches on the electrical panel to the right (position 0).",
       },
-      common_door_1: {
-        text: "Close and lock door 1 and the shutter",
+      metal_door: {
+        text: "Close the door and shutter of the metal workshop",
         description: "Lock the door and close the shutter.",
       },
+      common_door_1: {
+        text: "Close door 1 and the white inner shutter",
+        description:
+          "(1) Close the white inner shutter by pressing the down arrow.\n\n(2) If the key is present on the door, lock the door.",
+      },
       common_lights_1: {
+        text: "Turn off the lights in the corner of the common areas",
+        description:
+          "Turn all the switches on the electrical panel to the right (position 0). This electrical panel is located in the right corner when looking towards the metal workshop.",
+      },
+      common_lights_2: {
         text: "Turn off the lights in the middle of the common areas",
-        description: "Turn all the switches on the electrical panel to the left.",
+        description:
+          "Turn all the switches on the electrical panel to the right (position 0). This electrical panel is located in the middle of the left wall when looking at the metal shutter facing the parking.",
+      },
+      common_lights_3: {
+        text: "Turn off the serigraphy light",
+        description:
+          "Press the switch located to the left of the metal shutter facing the parking. This switch turns off the serigraphy light located to the right of the metal shutter.",
       },
       common_door_2: {
-        text: "Close and lock door 2 and the metal shutter",
-        description: "Lock the door and close the metal shutter.",
-      },
-      // TODO: check if needed
-      common_lights_2: {
-        text: "Turn off the lights at the entrance of the common areas",
-        description: "Press the black switch to turn off the lights.",
+        text: "Close door 2 and the metal shutter",
+        description:
+          "(1) Close the metal shutter by pressing the down arrow.\n\n(2) Lock the door.",
       },
       common_door_serigraphy: {
         text: "Close the serigraphy door providing access to the parking",
         description:
-          'Go through the "PAINT LAB" door, then close the serigraphy door providing access to the parking.',
+          'Go through the "PAINT LAB" door, then close the serigraphy door providing access to the parking. There is no lock, just let the door close on its own.',
       },
       parking_door_1: {
-        text: "Close the gray gate",
+        text: "Close the green gate",
         description:
           "Enter the code on the keypad and wait for the confirmation beep.",
       },
@@ -111,12 +123,12 @@ const translations = {
       alarm: {
         text: "Activate the alarm",
         description:
-          "Enter the code on the keypad and wait for the confirmation beep. You have 60 seconds to exit after activation.",
+          "Open the gray control box and enter the 4-digit code followed by the letter 'A'. The screen will then display numbers corresponding to zones. The Microfactory is zone '8'. If you have completed all the previous steps, an 'R' will appear under the number '8'. In this case, you can arm the alarm by entering the 4-digit code again followed by '8' and 'ent'. You have 90 seconds to close the gate.\n\nIf an 'F' appears under the number '8', it means one of the steps was not completed correctly and you must return to the Microfactory to recheck each point.",
       },
       parking_door_2: {
-        text: "Close the green gate",
+        text: "Close the gray gate",
         description:
-          "Enter the code on the keypad and wait for the confirmation beep.",
+          "Enter the code on the keypad and wait for the gate to be completely closed.",
       },
     },
 
@@ -133,7 +145,7 @@ const translations = {
     // App Home & Modal Headers
     appTitle: "🏭 Liste de Sécurité Microfactory",
     modalTitle: "Liste de Sécurité",
-    taskInfo: "Informations sur la Tâche",
+    taskInfo: "Informations",
     successTitle: "✅ Terminé !",
 
     // Instructions
@@ -180,16 +192,15 @@ const translations = {
 
     // Checklist Items
     items: {
-      // TODO: check how to close the shutter
       wood_door_liverpoolstreet: {
-        text: "Fermer et verrouiller la porte et le rideau métalique de rue de Liverpool",
+        text: "Fermer la porte et les rideaux de la rue de Liverpool",
         description:
-          "Verrouillez la porte et fermez le rideau métalique donnant accès à la rue de Liverpool.",
+          "(1) Fermez le rideau intérieur en appuyant sur la fleche du bas. Si cela ne fonctionne pas, il faut allumer le boitier en le mettant en position 1.\n\n(2) Fermez le rideau extérieur en tournant la clé du boitier du mur de droite vers la gauche.\n\n(3) Si la porte n'est pas déjà verrouillée, verrouillez la à l'aide de la clé posée sur le boitier permettant de fermer le rideau extérieur.",
       },
       wood_lights_1: {
         text: "Éteindre les lumières au milieu de l'atelier bois",
         description:
-          "Tournez les 3 interrupteurs du panneau électrique vers la gauche.",
+          "Tournez les 3 interrupteurs du panneau électrique vers la droite (position 0).",
       },
       wood_lights_2: {
         text: "Éteindre les lumières a l'entrée de l'atelier bois",
@@ -201,57 +212,64 @@ const translations = {
         description:
           "Tirez fermement sur la porte coupe-feu afin de fermer l'atelier bois.",
       },
-      // TODO: take picture
+      metal_back_door: {
+        text: "Verrouiller la porte au fond de l'atelier métal",
+        description:
+          "Tirez fermement la porte et fermez le verrou. Assurez-vous que le verrou est complètement engagé.",
+      },
       metal_lights: {
         text: "Éteindre les lumières de l'atelier métal",
         description:
-          "Tournez les 3 interrupteurs du panneau électrique vers la gauche.",
+          "Tournez les 2 interrupteurs du panneau électrique vers la droite (position 0).",
       },
-      // TODO: retake picture with lights off
       metal_door: {
-        text: "Fermer et verrouiller la porte de l'atelier métal",
-        description:
-          "Fermez et verrouillez la petite porte de l'atelier métal. Assurez-vous que le verrou est complètement engagé.",
+        text: "Fermer la porte et le rideau de l'atelier métal",
+        description: "Verrouillez la porte et fermez le rideau",
       },
       common_door_1: {
-        text: "Fermer et verrouiller la porte 1 et le rideau",
-        description: "Verrouillez la porte et fermez le rideau.",
+        text: "Fermer la porte 1 et le rideau intérieur blanc",
+        description:
+          "(1) Fermez le rideau intérieur blanc appuyant sur la fleche du bas.\n\n(2) Si la clé est présente sur la porte, verrouillez la porte.",
       },
       common_lights_1: {
+        text: "Éteindre les lumières dans le coin des espaces communs",
+        description:
+          "Tournez tous les interrupteurs du panneau électrique vers la droite (position 0). Ce panneau électrique est situéx dans le coin droit lorsque vous regardez en direction de l'atelier métal.",
+      },
+      common_lights_2: {
         text: "Éteindre les lumières au milieu des espaces communs",
         description:
-          "Tournez tous les interrupteurs du panneau électrique vers la gauche.",
+          "Tournez tous les interrupteurs du panneau électrique vers la droite (position 0). Ce panneau électrique est situé au milieu du mur gauche lorsque vous regardez le rideau métalique donnant sur le parking.",
+      },
+      common_lights_3: {
+        text: "Éteindre la lumière de la sériographie",
+        description:
+          "Appuyez sur l'interrupteur situé a gauche du rideau métalique donnant sur le parking. Cet interrupteur éteint la lumière de la sérigraphie située a droite du rideau métalique.",
       },
       common_door_2: {
-        text: "Fermer et verrouiller la porte 2 et le rideau métalique",
-        description: "Verrouillez la porte et fermez le rideau métalique.",
-      },
-      // TODO: check if neeeded
-      common_lights_2: {
-        text: "Éteindre les lumières a l'entrée des espaces communs",
+        text: "Fermer la porte 2 et le rideau métalique",
         description:
-          "Appuyez sur l'interrupteur noir pour éteindre les lumières.",
+          "(1) Fermez le rideau métalique appuyant sur la fleche du bas.\n\n(2) Verrouillez la porte.",
       },
       common_door_serigraphy: {
         text: "Fermer la porte de la serographie donnant accès au parking",
         description:
-          'Passez par la porte "LABO PEINTURE", puis fermez la porte de la serographie donnant accès au parking.',
+          'Passez par la porte "LABO PEINTURE", puis fermez la porte de la serographie donnant accès au parking. Il n\'y a pas de verrou, il suffit de laisser la porte se refermer.',
       },
       parking_door_1: {
-        text: "Fermer le portail gris",
-        description:
-          "Tapez le code sur le clavier et attendez le bip de confirmation.",
-      },
-      // TODO: provide more details and retake picture
-      alarm: {
-        text: "Activer l'alarme",
-        description:
-          "Entrez le code sur le clavier et attendez le bip de confirmation. Vous avez 60 secondes pour sortir après l'activation.",
-      },
-      parking_door_2: {
         text: "Fermer le portail vert",
         description:
           "Tapez le code sur le clavier et attendez le bip de confirmation.",
+      },
+      alarm: {
+        text: "Activer l'alarme",
+        description:
+          "Ouvrez le boitier gris et entrez le code à 4 chiffres suivi de la lettre 'A'. L'ecran affiche alors des chiffres correspondant a des zones. La Microfactory est la zone '8'. Si vous avez effectué tous les points précendents, un 'R' apparait sous le chiffre '8'. Dans ce cas, vous pouvez armer l'alarme en entrant a nouveau le code à 4 chiffres suivi de '8' et 'ent'. Vous avez 90 secondes pour fermer le portail.\n\nSi un 'F' apparait sous le chiffre '8' c'est que l'une des étapes n'est pas correctement effectuée et vous devez retourner dans la Microfactory pour revérifier chaque point.",
+      },
+      parking_door_2: {
+        text: "Fermer le portail gris",
+        description:
+          "Tapez le code sur le clavier et attendez que le portail soit complétement fermé.",
       },
     },
 
@@ -316,14 +334,14 @@ const translations = {
     items: {
       // TODO: check how to close the shutter
       wood_door_liverpoolstreet: {
-        text: "Sluit en vergrendel de deur en het metalen rolluik van Liverpool Street",
+        text: "Sluit de deur en de rolluiken op Liverpool Street",
         description:
-          "Vergrendel de deur en sluit het metalen rolluik dat toegang geeft tot Liverpool Street.",
+          "(1) Sluit het binnenrolluik door op de pijl omlaag te drukken. Als dit niet werkt, zet u de bedieningskast aan door deze op positie 1 in te stellen.\n\n(2) Sluit het buitenrolluik door de sleutel op de bedieningskast op de rechtermuur van rechts naar links te draaien.\n\n(3) Als de deur niet al vergrendeld is, vergrendel deze dan met behulp van de sleutel geplaatst op de bedieningskast voor het sluiten van het buitenrolluik.",
       },
       wood_lights_1: {
         text: "Schakel de lichten in het midden van de houtworkshop uit",
         description:
-          "Draai de 3 schakelaars op het elektriciteitsschakelbord naar links.",
+          "Draai de 3 schakelaars op het elektriciteitsschakelbord naar rechts (positie 0).",
       },
       wood_lights_2: {
         text: "Schakel de lichten bij de ingang van de houtworkshop uit",
@@ -335,44 +353,52 @@ const translations = {
         description:
           "Trek stevig aan de brandwerende deur om de houtworkshop te sluiten.",
       },
-      // TODO: take picture
+      metal_back_door: {
+        text: "Vergrendel de deur aan de achterkant van de metaalworkshop",
+        description:
+          "Trek de deur stevig en sluit het slot. Zorg ervoor dat het slot volledig is ingeschakeld.",
+      },
       metal_lights: {
         text: "Schakel de lichten in de metaalworkshop uit",
         description:
-          "Draai de 3 schakelaars op het elektriciteitsschakelbord naar links.",
+          "Draai de 2 schakelaars op het elektriciteitsschakelbord naar rechts (positie 0).",
       },
-      // TODO: retake picture with lights off
       metal_door: {
-        text: "Sluit en vergrendel de deur van de metaalworkshop",
-        description:
-          "Sluit en vergrendel de kleine deur van de metaalworkshop. Zorg ervoor dat het slot volledig is ingeschakeld.",
-      },
-      common_door_1: {
-        text: "Sluit en vergrendel deur 1 en het rolluik",
+        text: "Sluit de deur en het rolluik van de metaalworkshop",
         description: "Vergrendel de deur en sluit het rolluik.",
       },
+      common_door_1: {
+        text: "Sluit deur 1 en het witte binnenrolluik",
+        description:
+          "(1) Sluit het witte binnenrolluik door op de pijl omlaag te drukken.\n\n(2) Als de sleutel op de deur aanwezig is, vergrendel de deur.",
+      },
       common_lights_1: {
+        text: "Schakel de lichten in de hoek van de gemeenschappelijke ruimtes uit",
+        description:
+          "Draai alle schakelaars op het elektriciteitsschakelbord naar rechts (positie 0). Dit elektriciteitsschakelbord bevindt zich in de rechterhoek wanneer u naar de metaalworkshop kijkt.",
+      },
+      common_lights_2: {
         text: "Schakel de lichten in het midden van de gemeenschappelijke ruimtes uit",
         description:
-          "Draai alle schakelaars op het elektriciteitsschakelbord naar links.",
+          "Draai alle schakelaars op het elektriciteitsschakelbord naar rechts (positie 0). Dit elektriciteitsschakelbord bevindt zich in het midden van de linkermuur wanneer u naar het metalen rolluik kijkt dat naar de parkeerplaats leidt.",
+      },
+      common_lights_3: {
+        text: "Schakel het licht van de serigrafiefabriek uit",
+        description:
+          "Druk op de schakelaar links van het metalen rolluik dat naar de parkeerplaats leidt. Deze schakelaar schakelt het licht van de serigrafiefabriek rechts van het metalen rolluik uit.",
       },
       common_door_2: {
-        text: "Sluit en vergrendel deur 2 en het metalen rolluik",
-        description: "Vergrendel de deur en sluit het metalen rolluik.",
-      },
-      // TODO: check if needed
-      common_lights_2: {
-        text: "Schakel de lichten bij de ingang van de gemeenschappelijke ruimtes uit",
+        text: "Sluit deur 2 en het metalen rolluik",
         description:
-          "Druk op de zwarte schakelaar om de lichten uit te schakelen.",
+          "(1) Sluit het metalen rolluik door op de pijl omlaag te drukken.\n\n(2) Vergrendel de deur.",
       },
       common_door_serigraphy: {
         text: "Sluit de serigraficdeur die toegang geeft tot de parkeerplaats",
         description:
-          'Ga door de deur "VERFLAB", sluit vervolgens de serigraficdeur die toegang geeft tot de parkeerplaats.',
+          'Ga door de deur "VERFLAB", sluit vervolgens de serigraficdeur die toegang geeft tot de parkeerplaats. Er is geen slot, laat de deur gewoon dichtgaan.',
       },
       parking_door_1: {
-        text: "Sluit het grijze hek",
+        text: "Sluit het groene hek",
         description:
           "Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep.",
       },
@@ -380,12 +406,12 @@ const translations = {
       alarm: {
         text: "Activeer het alarm",
         description:
-          "Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep. U heeft 60 seconden om te vertrekken na activering.",
+          "Open de grijze bedieningskast en voer de 4-cijferige code in gevolgd door de letter 'A'. Het scherm geeft dan nummers weer die overeenkomen met zones. De Microfactory is zone '8'. Als u alle vorige stappen hebt voltooid, verschijnt een 'R' onder het getal '8'. In dit geval kunt u het alarm inschakelen door de 4-cijferige code opnieuw in te voeren gevolgd door '8' en 'ent'. U heeft 90 seconden om het hek te sluiten.\n\nAls een 'F' onder het getal '8' verschijnt, betekent dit dat een van de stappen niet correct is voltooid en moet u teruggaan naar de Microfactory om elk punt opnieuw te controleren.",
       },
       parking_door_2: {
-        text: "Sluit het groene hek",
+        text: "Sluit het grijze hek",
         description:
-          "Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep.",
+          "Voer de code in op het toetsenpaneel en wacht tot het hek volledig is gesloten.",
       },
     },
 
