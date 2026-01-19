@@ -1,5 +1,6 @@
 require("dotenv").config();
 const { App } = require("@slack/bolt");
+const express = require("express");
 const {
   buildChecklistModal,
   buildCompletionMessage,
@@ -9,13 +10,21 @@ const {
 const { checklistItems } = require("./checklist-data");
 const { getUserLanguage, getTranslations } = require("./i18n");
 
+// Create Express app for health checks
+const expressApp = express();
+const PORT = process.env.PORT || 3000;
+
+// Health check endpoint for Render
+expressApp.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
 // Initialize the Bolt app
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
   socketMode: true,
   appToken: process.env.SLACK_APP_TOKEN,
-  port: process.env.PORT || 3000,
 });
 
 /**
@@ -431,9 +440,17 @@ async function postCompletionToChannel(
  */
 (async () => {
   try {
+    // Start Slack Bolt app (Socket Mode)
     await app.start();
-    console.log("⚡️ Microfactory Security Checkmate app is running!");
-    console.log("🏭 Ready to help secure the warehouse!");
+
+    // Start Express server for health checks
+    expressApp.listen(PORT, () => {
+      console.log("⚡️ Microfactory Security Checkmate app is running!");
+      console.log("🏭 Ready to help secure the warehouse!");
+      console.log(
+        `📡 Health check endpoint available at http://localhost:${PORT}/health`
+      );
+    });
   } catch (error) {
     console.error("Failed to start app:", error);
     process.exit(1);
