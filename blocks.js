@@ -1,38 +1,17 @@
 const { checklistItems } = require("./checklist-data");
+const { getTranslations } = require("./i18n");
 
 /**
- * Build the Block Kit modal view for the security checklist
+ * Build checklist blocks with checkboxes and info buttons
+ * @param {string} actionIdPrefix - Prefix for action_id (e.g., "modal" or "home")
+ * @param {string} blockIdPrefix - Prefix for block_id (e.g., "category" or "home_category")
+ * @param {string} lang - Language code (en, fr, nl)
+ * @returns {Array} Array of Block Kit blocks
  */
-function buildChecklistModal() {
-  // Group items by category
-  const categories = {};
-  checklistItems.forEach((item) => {
-    if (!categories[item.category]) {
-      categories[item.category] = [];
-    }
-    categories[item.category].push(item);
-  });
-
-  const blocks = [
-    {
-      type: "header",
-      text: {
-        type: "plain_text",
-        text: "🏭 Microfactory Security Checklist",
-        emoji: true,
-      },
-    },
-    {
-      type: "section",
-      text: {
-        type: "mrkdwn",
-        text: "*Please check all items before closing the warehouse*",
-      },
-    },
-    {
-      type: "divider",
-    },
-  ];
+function buildChecklistBlocks(actionIdPrefix, blockIdPrefix, lang = "en") {
+  const t = getTranslations(lang);
+  const categories = groupItemsByCategory(t);
+  const blocks = [];
 
   // Add each category with its items
   Object.keys(categories).forEach((category) => {
@@ -45,48 +24,197 @@ function buildChecklistModal() {
       },
     });
 
-    // Add checkboxes for each item in the category
-    const options = categories[category].map((item) => ({
-      text: {
-        type: "mrkdwn",
-        text: item.text,
-      },
-      value: item.id,
-    }));
+    // Add each item as a separate row with checkbox and info button
+    categories[category].forEach((item) => {
+      // Combine emoji from checklist-data.js with translated text from i18n.js
+      const itemText = `${item.emoji} ${t.items[item.id].text}`;
 
-    blocks.push({
-      type: "actions",
-      block_id: `category_${category.toLowerCase().replace(/\s+/g, "_")}`,
-      elements: [
-        {
-          type: "checkboxes",
-          action_id: `checklist_${category.toLowerCase().replace(/\s+/g, "_")}`,
-          options: options,
-        },
-      ],
+      blocks.push({
+        type: "actions",
+        block_id: `${blockIdPrefix}_${item.id}`,
+        elements: [
+          {
+            type: "checkboxes",
+            action_id: `${actionIdPrefix}_checkbox_${item.id}`,
+            options: [
+              {
+                text: {
+                  type: "mrkdwn",
+                  text: itemText,
+                },
+                value: item.id,
+              },
+            ],
+          },
+          {
+            type: "button",
+            text: {
+              type: "plain_text",
+              text: t.infoButton,
+              emoji: true,
+            },
+            action_id: `item_info_${item.id}`,
+            value: item.id,
+          },
+        ],
+      });
     });
+
+    // const options = categories[category].map((item) => ({
+    //   text: {
+    //     type: "mrkdwn",
+    //     text: item.text,
+    //   },
+    //   value: item.id,
+    // }));
+
+    // blocks.push({
+    //   type: "actions",
+    //   block_id: `${blockIdPrefix}_${categorySlug}`,
+    //   elements: [
+    //     {
+    //       type: "checkboxes",
+    //       action_id: `${actionIdPrefix}__checkbox_${categorySlug}`,
+    //       options: options,
+    //     },
+    //   ],
+    // });
 
     blocks.push({
       type: "divider",
     });
   });
 
+  return blocks;
+}
+
+/**
+ * Build App Home view with interactive checklist
+ * @param {Object} options - Optional configuration
+ * @param {string} options.successMessage - Optional success message to show at bottom
+ * @param {string} options.lang - Language code (en, fr, nl)
+ * @returns {Array} Array of Block Kit blocks
+ */
+function buildAppHomeView(options = {}) {
+  const lang = options.lang || "en";
+  const t = getTranslations(lang);
+
+  const blocks = [
+    {
+      type: "header",
+      text: {
+        type: "plain_text",
+        text: t.appTitle,
+        emoji: true,
+      },
+    },
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: t.checklistIntro,
+      },
+    },
+    {
+      type: "divider",
+    },
+    // Add the checklist blocks
+    ...buildChecklistBlocks("home", "home_category", lang),
+  ];
+
+  // Add success message OR submit button (not both)
+  if (options.successMessage) {
+    // Show success message instead of submit button
+    blocks.push({
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: options.successMessage,
+      },
+    });
+  } else {
+    // Show submit button
+    blocks.push({
+      type: "actions",
+      block_id: "home_submit_actions",
+      elements: [
+        {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: t.completeButton,
+            emoji: true,
+          },
+          style: "primary",
+          action_id: "home_submit_checklist",
+          value: "submit",
+        },
+      ],
+    });
+  }
+
+  blocks.push({
+    type: "divider",
+  });
+
+  // Add "How to Use" section
+  blocks.push({
+    type: "section",
+    text: {
+      type: "mrkdwn",
+      text: `*${t.howToUseTitle}*\n\n${t.howToUseStep1}\n${t.howToUseStep2}\n${t.howToUseStep3}\n\n${t.howToUseFooter}`,
+    },
+  });
+
+  return blocks;
+}
+
+/**
+ * Build the Block Kit modal view for the security checklist
+ * @param {string} lang - Language code (en, fr, nl)
+ */
+function buildChecklistModal(lang = "en") {
+  const t = getTranslations(lang);
+
+  const blocks = [
+    {
+      type: "header",
+      text: {
+        type: "plain_text",
+        text: t.appTitle,
+        emoji: true,
+      },
+    },
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: t.modalIntro,
+      },
+    },
+    {
+      type: "divider",
+    },
+    // Add the checklist blocks
+    ...buildChecklistBlocks("modal", "category", lang),
+  ];
+
   return {
     type: "modal",
-    callback_id: "security_checklist_modal",
+    callback_id: "modal_submit_checklist",
     title: {
       type: "plain_text",
-      text: "Security Checklist",
+      text: t.modalTitle,
       emoji: true,
     },
     submit: {
       type: "plain_text",
-      text: "Complete ✓",
+      text: t.completeButton,
       emoji: true,
     },
     close: {
       type: "plain_text",
-      text: "Cancel",
+      text: t.cancelButton,
       emoji: true,
     },
     blocks: blocks,
@@ -94,9 +222,72 @@ function buildChecklistModal() {
 }
 
 /**
- * Build a completion message with summary
+ * Build info modal for a specific checklist item
+ * @param {Object} item - The checklist item
+ * @param {string} lang - Language code (en, fr, nl)
+ * @returns {Object} Modal view object
  */
-function buildCompletionMessage(checkedItems, userName) {
+function buildInfoModal(item, lang = "en") {
+  const t = getTranslations(lang);
+  const itemText = t.items[item.id].text;
+  const itemDescription = t.items[item.id].description;
+  const translatedCategory = t.categories[item.category];
+
+  return {
+    type: "modal",
+    title: {
+      type: "plain_text",
+      text: t.taskInfo,
+      emoji: true,
+    },
+    close: {
+      type: "plain_text",
+      text: t.closeButton,
+      emoji: true,
+    },
+    blocks: [
+      {
+        type: "header",
+        text: {
+          type: "plain_text",
+          text: `${item.emoji} ${itemText}`,
+          emoji: true,
+        },
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: `*${t.categoryLabel}* ${translatedCategory}`,
+        },
+      },
+      {
+        type: "divider",
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: itemDescription,
+        },
+      },
+      {
+        type: "image",
+        image_url: item.imageUrl,
+        alt_text: `${item.emoji} ${itemText}`,
+      },
+    ],
+  };
+}
+
+/**
+ * Build a completion message with summary
+ * @param {Array} checkedItems - Array of checked item IDs
+ * @param {string} userName - Name of the user who completed the checklist
+ * @param {string} lang - Language code (en, fr, nl)
+ */
+function buildCompletionMessage(checkedItems, userName, lang = "en") {
+  const t = getTranslations(lang);
   const totalItems = checklistItems.length;
   const checkedCount = checkedItems.length;
   const allChecked = checkedCount === totalItems;
@@ -106,9 +297,7 @@ function buildCompletionMessage(checkedItems, userName) {
       type: "header",
       text: {
         type: "plain_text",
-        text: allChecked
-          ? "✅ Security Check Complete!"
-          : "⚠️ Security Check Submitted",
+        text: t.completionTitle,
         emoji: true,
       },
     },
@@ -116,7 +305,7 @@ function buildCompletionMessage(checkedItems, userName) {
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `*Completed by:* ${userName}\n*Time:* <!date^${Math.floor(
+        text: `*${t.completedBy}:* ${userName}\n*Time:* <!date^${Math.floor(
           Date.now() / 1000
         )}^{date_short_pretty} at {time}|${new Date().toLocaleString()}>`,
       },
@@ -125,7 +314,7 @@ function buildCompletionMessage(checkedItems, userName) {
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `*Items checked:* ${checkedCount}/${totalItems}`,
+        text: `*${t.completedItems}:* ${checkedCount}/${totalItems}`,
       },
     },
   ];
@@ -135,7 +324,7 @@ function buildCompletionMessage(checkedItems, userName) {
       type: "section",
       text: {
         type: "mrkdwn",
-        text: "🎉 *All security items have been checked!* The warehouse is secure.",
+        text: t.allItemsChecked,
       },
     });
   } else {
@@ -144,14 +333,14 @@ function buildCompletionMessage(checkedItems, userName) {
     );
 
     const uncheckedList = uncheckedItems
-      .map((item) => `• ${item.text}`)
+      .map((item) => `• ${item.emoji} ${t.items[item.id].text}`)
       .join("\n");
 
     blocks.push({
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `⚠️ *Missing items:*\n${uncheckedList}`,
+        text: `${t.missingItems}\n${uncheckedList}`,
       },
     });
   }
@@ -164,14 +353,14 @@ function buildCompletionMessage(checkedItems, userName) {
   if (checkedCount > 0) {
     const checkedItemsList = checklistItems
       .filter((item) => checkedItems.includes(item.id))
-      .map((item) => `✓ ${item.text}`)
+      .map((item) => `✓ ${item.emoji} ${t.items[item.id].text}`)
       .join("\n");
 
     blocks.push({
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `*Completed items:*\n${checkedItemsList}`,
+        text: `*${t.completedItems}:*\n${checkedItemsList}`,
       },
     });
   }
@@ -180,132 +369,25 @@ function buildCompletionMessage(checkedItems, userName) {
 }
 
 /**
- * Build App Home view with interactive checklist
+ * Helper function to group checklist items by category
+ * @param {Object} t - Translations object
+ * @returns {Object} Items grouped by category
  */
-function buildAppHomeView() {
-  // Group items by category
+function groupItemsByCategory(t) {
   const categories = {};
   checklistItems.forEach((item) => {
-    if (!categories[item.category]) {
-      categories[item.category] = [];
+    const translatedCategory = t.categories[item.category];
+    if (!categories[translatedCategory]) {
+      categories[translatedCategory] = [];
     }
-    categories[item.category].push(item);
+    categories[translatedCategory].push(item);
   });
-
-  const blocks = [
-    {
-      type: "header",
-      text: {
-        type: "plain_text",
-        text: "🏭 Microfactory Security Checklist",
-        emoji: true,
-      },
-    },
-    {
-      type: "section",
-      text: {
-        type: "mrkdwn",
-        text: "👋 *Welcome!* Check off each item as you complete the closing procedures.",
-      },
-    },
-    {
-      type: "divider",
-    },
-  ];
-
-  // Add each category with its checkboxes
-  Object.keys(categories).forEach((category) => {
-    // Category header
-    blocks.push({
-      type: "section",
-      text: {
-        type: "mrkdwn",
-        text: `*${category}*`,
-      },
-    });
-
-    // Add checkboxes for each item in the category
-    const options = categories[category].map((item) => ({
-      text: {
-        type: "mrkdwn",
-        text: item.text,
-      },
-      value: item.id,
-    }));
-
-    blocks.push({
-      type: "actions",
-      block_id: `home_category_${category.toLowerCase().replace(/\s+/g, "_")}`,
-      elements: [
-        {
-          type: "checkboxes",
-          action_id: `home_checklist_${category
-            .toLowerCase()
-            .replace(/\s+/g, "_")}`,
-          options: options,
-        },
-      ],
-    });
-
-    blocks.push({
-      type: "divider",
-    });
-  });
-
-  // Add submit button
-  blocks.push({
-    type: "actions",
-    block_id: "home_submit_actions",
-    elements: [
-      {
-        type: "button",
-        text: {
-          type: "plain_text",
-          text: "Complete ✓",
-          emoji: true,
-        },
-        style: "primary",
-        action_id: "home_submit_checklist",
-        value: "submit",
-      },
-    ],
-  });
-
-  blocks.push({
-    type: "divider",
-  });
-
-  // Add "How to Use" section
-  blocks.push({
-    type: "section",
-    text: {
-      type: "mrkdwn",
-      text: '*� How to Use:*\n\n1️⃣ Check off each item above as you complete it\n2️⃣ Click *"Complete ✓"* when done\n3️⃣ Summary will be posted to the team channel\n\n_You can also type `/security-check` in any channel to open the checklist modal._',
-    },
-  });
-
-  blocks.push({
-    type: "context",
-    elements: [
-      {
-        type: "mrkdwn",
-        text: "🌱 _Supporting the circular economy through shared workshop spaces_ | Made for Microfactory Brussels",
-      },
-    ],
-  });
-
-  return blocks;
-}
-
-/**
- * Build a simple help message (kept for backwards compatibility)
- */
-function buildHelpMessage() {
-  return buildAppHomeView();
+  return categories;
 }
 
 module.exports = {
+  buildAppHomeView,
   buildChecklistModal,
+  buildInfoModal,
   buildCompletionMessage,
-  buildHelpMessage,
 };

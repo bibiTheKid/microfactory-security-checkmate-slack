@@ -7,43 +7,19 @@ A beautiful Slack app for managing the security checklist when closing the Micro
 - 📋 **Interactive checklist in App Home** - Complete the checklist directly from the sidebar
 - 🎨 Beautiful UI built with Slack's Block Kit framework
 - ✅ Real-time completion tracking with checkboxes
+- ⚡ **Auto-submit when all items checked** - Automatically posts to channel when you check the last item!
 - 📊 Summary report showing completed and missing items
 - 📢 **Posts completion summary to a configurable channel for team visibility**
 - 🔔 Slash command `/security-check` for modal access
 - 🏠 **App Home in left sidebar** - Always accessible, no need to remember commands
 - 👥 Team accountability through public channel posting
 - 📱 Works on mobile and desktop
-- 💾 Remembers your selections as you check items
 
-## 🔧 Security Checklist Items
+## ✅ Security Checklist Items
 
-The app includes checks for:
+The app includes checks for the wood workshop, the metal workshop, the common areas, and the parking.
 
-### Wood Workshop
-
-- 💡 Turn off the lights
-- 🔌 Unplug all machines
-- 🚪 Close and lock the door
-- 🪟 Close all windows
-
-### Metal Workshop
-
-- 💡 Turn off the lights
-- 🔌 Unplug all machines
-- 🚪 Close and lock the door
-- 🪟 Close all windows
-
-### Common Areas
-
-- 💡 Turn off all common area lights
-- 🌡️ Adjust heating/cooling to night mode
-- 🔐 Lock the main entrance door
-
-### Security
-
-- 🚨 Activate the security alarm
-
-## 🚀 Setup Instructions
+## 🚀 Setup the app in your Slack workspace
 
 ### Prerequisites
 
@@ -60,8 +36,6 @@ The app includes checks for:
 5. Copy and paste the contents of `manifest.json` from this repository
 6. Click **"Create"**
 7. Review the app configuration and click **"Install to Workspace"**
-
-> **📝 Already created the app?** If you created the app before the App Home feature was added, see [UPDATE_MANIFEST.md](UPDATE_MANIFEST.md) for instructions on updating your existing app.
 
 ### Step 2: Get Your Tokens and Channel ID
 
@@ -138,10 +112,11 @@ You should see:
 
 1. Look for **"Security Checkmate"** in the left sidebar under "Apps"
 2. Click on it to see the App Home with the **interactive checklist**
-3. Check off items directly in the App Home
-4. Click **"Complete ✓"** to submit
+3. Check off items directly in the App Home as you complete them
+4. **When you check the last item, it automatically submits!** ⚡
+5. Or click **"Complete ✓"** to submit manually at any time
 
-**Option 2: Via Slash Command**
+**Option 2: Via Slash Command (Modal)**
 
 1. In any Slack channel or DM, type:
 
@@ -150,22 +125,20 @@ You should see:
    ```
 
 2. A modal will open with the complete security checklist
+3. Check off items as you complete them
+4. **When you check the last item, it automatically submits!** ⚡
+5. Or click **"Complete ✓"** to submit manually at any time
 
-### Completing the Checklist
+### What Happens After Submission
 
-1. Check off each item as you complete it
-2. Click **"Complete ✓"** when done
-3. A summary message will be posted to the configured channel showing:
-   - Who completed the checklist
-   - When it was completed
-   - Which items were checked
-   - Any missing items (if applicable)
+A summary message will be posted to the configured channel showing:
+
+- Who completed the checklist
+- When it was completed
+- Which items were checked
+- Any missing items (if applicable)
+
 4. The message will be visible to everyone in the channel for accountability
-
-### Getting Help
-
-- Mention the bot: `@Security Checkmate`
-- Visit the App Home tab
 
 ## 🛠️ Development
 
@@ -187,9 +160,13 @@ microfactory-security-checkmate-slack/
 ├── manifest.json          # Slack app manifest
 ├── package.json           # Node.js dependencies
 ├── .env.sample            # Environment variables template
-├── .gitignore            # Git ignore rules
-└── README.md             # This file
+├── .gitignore             # Git ignore rules
+└── README.md              # This file
 ```
+
+### Photos
+
+The photos are stored on https://imagekit.io/
 
 ### Customizing the Checklist
 
@@ -204,18 +181,80 @@ To add, remove, or modify checklist items, edit `checklist-data.js`:
 }
 ```
 
+Then, add, remove, or modify the translation in `i18n.js`:
+
+```javascript
+const translations = {
+  en: {
+    // ... other translations
+    items: {
+      unique_id: {
+        text: "Your checklist item text",
+        description: "A longer description of the item",
+      },
+    },
+  },
+
+  fr: {
+    // ... other translations
+    items: {
+      unique_id: {
+        text: "Your checklist item text",
+        description: "A longer description of the item",
+      },
+    },
+  },
+
+  nl: {
+    // ... other translations
+    items: {
+      unique_id: {
+        text: "Your checklist item text",
+        description: "A longer description of the item",
+      },
+    },
+  },
+};
+```
+
+## Run with Docker Compose (Recommended)
+
+### 1. Create `.env` file
+
+```bash
+cp .env.sample .env
+```
+
+Edit `.env` with your Slack credentials:
+
+```
+SLACK_BOT_TOKEN=xoxb-...
+SLACK_APP_TOKEN=xapp-...
+SLACK_SIGNING_SECRET=...
+SLACK_CHANNEL_ID=C...
+```
+
+### 2. Build and Run
+
+```bash
+# Build the image
+docker-compose build
+
+# Start the container
+docker-compose up -d
+
+# View logs
+docker-compose logs -f security-checkmate-slack-app
+
+# Stop the container
+docker-compose down
+```
+
 ## 📚 Built With
 
 - [Slack Bolt for JavaScript](https://slack.dev/bolt-js/) - Slack app framework
 - [Slack Block Kit](https://api.slack.com/block-kit) - UI framework
 - [Node.js](https://nodejs.org/) - Runtime environment
-
-## 🔒 Security & Privacy
-
-- All tokens are stored locally in `.env` (never committed to git)
-- Socket Mode is used (no public endpoints needed)
-- The app only has access to channels where it's invited
-- No data is stored or logged externally
 
 ## 📝 License
 
@@ -227,13 +266,14 @@ This app is designed for Microfactory's specific needs, but feel free to fork an
 
 ## 💡 Tips
 
-- Run the checklist at the end of each day
 - Create a dedicated channel like `#security` or `#warehouse-closing` for completion summaries
 - Make sure the bot is invited to the configured channel
 - Customize the checklist items based on your warehouse's specific needs
-- Use the completion summary to track security compliance over time
-- Review the channel history to ensure all closing procedures are being followed
 
 ---
 
 Made with ❤️ for Microfactory Brussels - Supporting the circular economy through shared workshop spaces.
+
+```
+
+```
