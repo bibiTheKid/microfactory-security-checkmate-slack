@@ -14,7 +14,7 @@ const { getUserLanguage, getTranslations } = require("./i18n");
 const expressApp = express();
 const PORT = process.env.PORT || 3000;
 expressApp.get("/health", (req, res) => {
-  res.status(200).json({ status: "ok2" });
+  res.status(200).json({ status: "Your checkmate is up and running!" });
 });
 
 // Initialize the Bolt app
@@ -129,7 +129,7 @@ app.action("home_submit_checklist", async ({ ack, body, client }) => {
     checkedItems,
     userId,
     client,
-    lang
+    lang,
   );
 
   // Clear the user's state
@@ -203,7 +203,7 @@ app.action(/^modal_checkbox_.*/, async ({ ack, body, action, client }) => {
       } catch (error) {
         console.error("Error updating modal on auto-submit:", error);
       }
-    }
+    },
   );
 });
 
@@ -230,7 +230,7 @@ app.action(/^home_checkbox_.*/, async ({ ack, body, action, client }) => {
     async () => {
       // Callback to update App Home UI after auto-submit
       console.log(
-        "[app.js] Auto-submit callback triggered - updating App Home with success message"
+        "[app.js] Auto-submit callback triggered - updating App Home with success message",
       );
       const appHomeBlocks = buildAppHomeView({
         lang,
@@ -245,7 +245,7 @@ app.action(/^home_checkbox_.*/, async ({ ack, body, action, client }) => {
         },
       });
       console.log("[app.js] App Home updated with success message");
-    }
+    },
   );
 });
 
@@ -313,7 +313,7 @@ async function handleCheckboxAction(
   stateMap,
   source,
   lang = "en",
-  onAutoSubmit = null
+  onAutoSubmit = null,
 ) {
   // Initialize user state if needed (now using Set instead of Map)
   if (!stateMap.has(userId)) {
@@ -340,13 +340,13 @@ async function handleCheckboxAction(
   const allChecked = checkedItems.length === totalItems;
 
   console.log(
-    `[handleCheckboxAction] ${source}: ${checkedItems.length}/${totalItems} items checked`
+    `[handleCheckboxAction] ${source}: ${checkedItems.length}/${totalItems} items checked`,
   );
 
   // If all items are checked, automatically submit
   if (allChecked) {
     console.log(
-      `All items checked in ${source} by user ${userId}, auto-submitting...`
+      `All items checked in ${source} by user ${userId}, auto-submitting...`,
     );
 
     // Post completion to channel
@@ -379,14 +379,14 @@ async function postCompletionToChannel(
   checkedItems,
   userId,
   client,
-  lang = "en"
+  lang = "en",
 ) {
   try {
     // Build completion message
     const completionBlocks = buildCompletionMessage(
       checkedItems,
       `<@${userId}>`,
-      lang
+      lang,
     );
 
     // Get the configured channel ID from environment variables
@@ -414,7 +414,7 @@ async function postCompletionToChannel(
     });
 
     console.log(
-      `Security checklist completed by ${userId} and posted to channel ${channelId}`
+      `Security checklist completed by ${userId} and posted to channel ${channelId}`,
     );
     return true;
   } catch (error) {
@@ -446,7 +446,7 @@ async function postCompletionToChannel(
       console.log("⚡️ Microfactory Security Checkmate app is running!");
       console.log("🏭 Ready to help secure the warehouse!");
       console.log(
-        `📡 Health check endpoint available at http://localhost:${PORT}/health`
+        `📡 Health check endpoint available at http://localhost:${PORT}/health`,
       );
     });
   } catch (error) {

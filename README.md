@@ -1,6 +1,6 @@
-# 🏭 Microfactory Security Checkmate
+# 🏭 MicroFactory Security Checkmate
 
-A beautiful Slack app for managing the security checklist when closing the Microfactory warehouse in Brussels. This app helps woodworkers and metalworkers ensure all security points are checked before leaving.
+A beautiful Slack app for managing the security checklist when closing the MicroFactory warehouse in Brussels. This app helps woodworkers and metalworkers ensure all security points are checked before leaving.
 
 ## ✨ Features
 
@@ -100,7 +100,7 @@ npm start
 You should see:
 
 ```
-⚡️ Microfactory Security Checkmate app is running!
+⚡️ MicroFactory Security Checkmate app is running!
 🏭 Ready to help secure the warehouse!
 ```
 
@@ -153,13 +153,15 @@ npm run dev
 ### Project Structure
 
 ```
-microfactory-security-checkmate-slack/
-├── app.js                 # Main application file
-├── blocks.js              # Block Kit UI builders
-├── checklist-data.js      # Security checklist items
+MicroFactory-security-checkmate-slack/
+├── src                    # Source code of the app
+  ├── app.js               # Main application file
+  ├── blocks.js            # Block Kit UI builders
+  ├── checklist-data.js    # Security checklist items
+  ├── i18n.js              # Translations for multi-language support
 ├── manifest.json          # Slack app manifest
 ├── package.json           # Node.js dependencies
-├── .env.sample            # Environment variables template
+├── .env.example           # Environment variables template
 ├── .gitignore             # Git ignore rules
 └── README.md              # This file
 ```
@@ -262,7 +264,7 @@ MIT
 
 ## 🤝 Contributing
 
-This app is designed for Microfactory's specific needs, but feel free to fork and adapt it for your own use case!
+This app is designed for MicroFactory's specific needs, but feel free to fork and adapt it for your own use case!
 
 ## 💡 Tips
 
@@ -272,7 +274,7 @@ This app is designed for Microfactory's specific needs, but feel free to fork an
 
 ---
 
-Made with ❤️ for Microfactory Brussels - Supporting the circular economy through shared workshop spaces.
+Made with ❤️ for MicroFactory Brussels - Supporting the circular economy through shared workshop spaces.
 
 ```
 

@@ -11,10 +11,10 @@ COPY package*.json ./
 RUN npm ci --only=production
 
 # Copy application files
-COPY app.js .
-COPY blocks.js .
-COPY checklist-data.js .
-COPY i18n.js .
+COPY src/app.js .
+COPY src/blocks.js .
+COPY src/checklist-data.js .
+COPY src/i18n.js .
 COPY manifest.json .
 
 # Expose port for health checks
