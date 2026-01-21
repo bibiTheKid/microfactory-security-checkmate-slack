@@ -70,7 +70,7 @@ const translations = {
         description: "Pull firmly on the fire door to close the wood workshop.",
       },
       metal_back_door: {
-        text: "Lock the door at the back of the metal workshop",
+        text: "Close the door at the back of the metal workshop",
         description:
           "Pull the door firmly and close the lock. Make sure the lock is fully engaged.",
       },
@@ -211,7 +211,7 @@ const translations = {
           "Tirez fermement sur la porte coupe-feu afin de fermer l'atelier bois.",
       },
       metal_back_door: {
-        text: "Verrouiller la porte au fond de l'atelier métal",
+        text: "Fermer la porte au fond de l'atelier métal",
         description:
           "Tirez fermement la porte et fermez le verrou. Assurez-vous que le verrou est complètement engagé.",
       },
@@ -352,7 +352,7 @@ const translations = {
           "Trek stevig aan de brandwerende deur om de houtworkshop te sluiten.",
       },
       metal_back_door: {
-        text: "Vergrendel de deur aan de achterkant van de metaalworkshop",
+        text: "Sluit de deur aan de achterkant van de metaalworkshop",
         description:
           "Trek de deur stevig en sluit het slot. Zorg ervoor dat het slot volledig is ingeschakeld.",
       },
@@ -441,17 +441,26 @@ function getTranslations(lang) {
  */
 async function getUserLanguage(client, userId) {
   try {
-    const userInfo = await client.users.info({ user: userId });
-    const slackLocale = userInfo.user.locale || "en-US";
+    const userInfo = await client.users.info({
+      user: userId,
+      include_locale: true,
+    });
+    const slackLocale = userInfo.user.locale;
 
     console.log(`[i18n] User ${userId} has Slack locale: ${slackLocale}`);
 
-    // Map Slack locale to our supported languages
+    // Map Slack locale to our supported languages (Slack locales can be: "en-US", "fr-FR", "nl-NL", or just "en", "fr", "nl")
     let detectedLang = "en";
-    if (slackLocale.startsWith("fr")) {
-      detectedLang = "fr";
-    } else if (slackLocale.startsWith("nl")) {
-      detectedLang = "nl";
+
+    if (slackLocale) {
+      const localeLower = slackLocale.toLowerCase();
+      if (localeLower.startsWith("fr")) {
+        detectedLang = "fr";
+      } else if (localeLower.startsWith("nl")) {
+        detectedLang = "nl";
+      } else if (localeLower.startsWith("en")) {
+        detectedLang = "en";
+      }
     }
 
     console.log(`[i18n] Detected language: ${detectedLang}`);

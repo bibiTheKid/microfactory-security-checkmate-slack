@@ -4,20 +4,20 @@ A beautiful Slack app for managing the security checklist when closing the Micro
 
 ## ✨ Features
 
-- 📋 **Interactive checklist in App Home** - Complete the checklist directly from the sidebar
+- 🏠 Complete the checklist directly from the sidebar
 - 🎨 Beautiful UI built with Slack's Block Kit framework
 - ✅ Real-time completion tracking with checkboxes
-- ⚡ **Auto-submit when all items checked** - Automatically posts to channel when you check the last item!
-- 📊 Summary report showing completed and missing items
-- 📢 **Posts completion summary to a configurable channel for team visibility**
+- ⚡ Automatically posts to channel when you check the last item
+- 📢 Summary report showing completed and missing items in channel
 - 🔔 Slash command `/security-check` for modal access
-- 🏠 **App Home in left sidebar** - Always accessible, no need to remember commands
 - 👥 Team accountability through public channel posting
 - 📱 Works on mobile and desktop
 
 ## ✅ Security Checklist Items
 
 The app includes checks for the wood workshop, the metal workshop, the common areas, and the parking.
+
+You can customize the checklist items by editing the `src/checklist-data.js` file and the `src/i18n.js` file.
 
 ## 🚀 Setup the app in your Slack workspace
 
@@ -111,9 +111,9 @@ You should see:
 **Option 1: Via App Home in Sidebar (Recommended)**
 
 1. Look for **"Security Checkmate"** in the left sidebar under "Apps"
-2. Click on it to see the App Home with the **interactive checklist**
+2. Click on it to see the App Home with the interactive checklist
 3. Check off items directly in the App Home as you complete them
-4. **When you check the last item, it automatically submits!** ⚡
+4. When you check the last item, it automatically submits! ⚡
 5. Or click **"Complete ✓"** to submit manually at any time
 
 **Option 2: Via Slash Command (Modal)**
@@ -126,7 +126,7 @@ You should see:
 
 2. A modal will open with the complete security checklist
 3. Check off items as you complete them
-4. **When you check the last item, it automatically submits!** ⚡
+4. When you check the last item, it automatically submits! ⚡
 5. Or click **"Complete ✓"** to submit manually at any time
 
 ### What Happens After Submission
@@ -155,10 +155,10 @@ npm run dev
 ```
 MicroFactory-security-checkmate-slack/
 ├── src                    # Source code of the app
-  ├── app.js               # Main application file
-  ├── blocks.js            # Block Kit UI builders
-  ├── checklist-data.js    # Security checklist items
-  ├── i18n.js              # Translations for multi-language support
+|   ├── app.js             # Main application file
+|   ├── blocks.js          # Block Kit UI builders
+|   ├── checklist-data.js  # Security checklist items
+|   ├── i18n.js            # Translations for multi-language support
 ├── manifest.json          # Slack app manifest
 ├── package.json           # Node.js dependencies
 ├── .env.example           # Environment variables template
