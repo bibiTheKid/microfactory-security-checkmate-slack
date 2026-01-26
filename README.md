@@ -166,10 +166,6 @@ MicroFactory-security-checkmate-slack/
 └── README.md              # This file
 ```
 
-### Photos
-
-The photos are stored on https://imagekit.io/
-
 ### Customizing the Checklist
 
 To add, remove, or modify checklist items, edit `checklist-data.js`:
@@ -178,8 +174,8 @@ To add, remove, or modify checklist items, edit `checklist-data.js`:
 {
   id: 'unique_id',
   category: 'Category Name',
-  text: '🔔 Your checklist item text',
-  emoji: '🔔'
+  emoji: '🔔',
+  imageUrl: 'https://example.com/image.jpg',
 }
 ```
 
@@ -218,6 +214,10 @@ const translations = {
   },
 };
 ```
+
+### Photos
+
+The photos are stored on https://imagekit.io/ and are configured in the `src/checklist-data.js` file.
 
 ## Run with Docker Compose (Recommended)
 

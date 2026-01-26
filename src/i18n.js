@@ -121,7 +121,7 @@ const translations = {
       alarm: {
         text: "Activate the alarm",
         description:
-          "Open the gray control box and enter the 4-digit code followed by the letter 'A'. The screen will then display numbers corresponding to zones. The Microfactory is zone '8'. If you have completed all the previous steps, an 'R' will appear under the number '8'. In this case, you can arm the alarm by entering the 4-digit code again followed by '8' and 'ent'. You have 90 seconds to close the gate.\n\nIf an 'F' appears under the number '8', it means one of the steps was not completed correctly and you must return to the Microfactory to recheck each point.",
+          "Open the gray control box and enter the 4-digit code followed by the letter 'A'. The screen will then display numbers corresponding to zones. The Microfactory is zone '8'. If you have completed all the previous steps, an 'R' will appear under the number '8'. In this case, you can arm the alarm by entering the 4-digit code again followed by '8' and 'ent'. You have 90 seconds to close the gate.\n\nIf an 'F' appears under the number '8', it means one of the steps was not completed correctly and you must return to the Microfactory to recheck each point.\n\n⚠️ If you encounter problems activating the alarm when leaving, please contact the site supervisor (Annelies 0496247323)",
       },
       parking_door_2: {
         text: "Close the gray gate",
@@ -262,7 +262,7 @@ const translations = {
       alarm: {
         text: "Activer l'alarme",
         description:
-          "Ouvrez le boitier gris et entrez le code à 4 chiffres suivi de la lettre 'A'. L'ecran affiche alors des chiffres correspondant a des zones. La Microfactory est la zone '8'. Si vous avez effectué tous les points précendents, un 'R' apparait sous le chiffre '8'. Dans ce cas, vous pouvez armer l'alarme en entrant a nouveau le code à 4 chiffres suivi de '8' et 'ent'. Vous avez 90 secondes pour fermer le portail.\n\nSi un 'F' apparait sous le chiffre '8' c'est que l'une des étapes n'est pas correctement effectuée et vous devez retourner dans la Microfactory pour revérifier chaque point.",
+          "Ouvrez le boitier gris et entrez le code à 4 chiffres suivi de la lettre 'A'. L'ecran affiche alors des chiffres correspondant a des zones. La Microfactory est la zone '8'. Si vous avez effectué tous les points précendents, un 'R' apparait sous le chiffre '8'. Dans ce cas, vous pouvez armer l'alarme en entrant a nouveau le code à 4 chiffres suivi de '8' et 'ent'. Vous avez 90 secondes pour fermer le portail.\n\nSi un 'F' apparait sous le chiffre '8' c'est que l'une des étapes n'est pas correctement effectuée et vous devez retourner dans la Microfactory pour revérifier chaque point.\n\n⚠️ Si vous rencontrez des problèmes pour activer l'alarme en partant, veuillez contacter la surveillante du site (Annelies 0496247323)",
       },
       parking_door_2: {
         text: "Fermer le portail gris",
@@ -403,7 +403,7 @@ const translations = {
       alarm: {
         text: "Activeer het alarm",
         description:
-          "Open de grijze bedieningskast en voer de 4-cijferige code in gevolgd door de letter 'A'. Het scherm geeft dan nummers weer die overeenkomen met zones. De Microfactory is zone '8'. Als u alle vorige stappen hebt voltooid, verschijnt een 'R' onder het getal '8'. In dit geval kunt u het alarm inschakelen door de 4-cijferige code opnieuw in te voeren gevolgd door '8' en 'ent'. U heeft 90 seconden om het hek te sluiten.\n\nAls een 'F' onder het getal '8' verschijnt, betekent dit dat een van de stappen niet correct is voltooid en moet u teruggaan naar de Microfactory om elk punt opnieuw te controleren.",
+          "Open de grijze bedieningskast en voer de 4-cijferige code in gevolgd door de letter 'A'. Het scherm geeft dan nummers weer die overeenkomen met zones. De Microfactory is zone '8'. Als u alle vorige stappen hebt voltooid, verschijnt een 'R' onder het getal '8'. In dit geval kunt u het alarm inschakelen door de 4-cijferige code opnieuw in te voeren gevolgd door '8' en 'ent'. U heeft 90 seconden om het hek te sluiten.\n\nAls een 'F' onder het getal '8' verschijnt, betekent dit dat een van de stappen niet correct is voltooid en moet u teruggaan naar de Microfactory om elk punt opnieuw te controleren.\n\n⚠️ Als u problemen ondervindt bij het activeren van het alarm bij vertrek, neem dan contact op met de toezichthouder van de site (Annelies 0496247323)",
       },
       parking_door_2: {
         text: "Sluit het grijze hek",
