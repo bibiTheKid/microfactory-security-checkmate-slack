@@ -54,7 +54,7 @@ const translations = {
       wood_door_liverpoolstreet: {
         text: "Close the door and shutters on Liverpool Street",
         description:
-          "(1) Close the inner shutter by pressing the down arrow. If it doesn't work, turn on the control box by setting it to position 1.\n\n(2) Close the outer shutter by turning the key on the control box on the right wall from right to left.\n\n(3) If the door is not already locked, lock it using the key placed on the control box for closing the outer shutter.",
+          "(1) Close the inner shutter by pressing the down arrow. If it doesn't work, turn on the control box by setting it to position 1.\n\n(2) Close the outer shutter by turning the key on the control box on the right wall to the left.\n\n(3) If the door is not already locked, lock it using the key placed on the control box for closing the outer shutter.",
       },
       wood_lights_1: {
         text: "Turn off the lights in the middle of the wood workshop",
@@ -111,7 +111,7 @@ const translations = {
       common_door_serigraphy: {
         text: "Close the serigraphy door providing access to the parking",
         description:
-          'Go through the "PAINT LAB" door, then close the serigraphy door providing access to the parking. There is no lock, just let the door close on its own.',
+          'Go through the "LABO PEINTURE" door, then close the serigraphy door providing access to the parking. There is no lock, just let the door close on its own.',
       },
       parking_door_1: {
         text: "Close the green gate",
@@ -121,7 +121,7 @@ const translations = {
       alarm: {
         text: "Activate the alarm",
         description:
-          "Open the gray control box and enter the 4-digit code followed by the letter 'A'. The screen will then display numbers corresponding to zones. The Microfactory is zone '8'. If you have completed all the previous steps, an 'R' will appear under the number '8'. In this case, you can arm the alarm by entering the 4-digit code again followed by '8' and 'ent'. You have 90 seconds to close the gate.\n\nIf an 'F' appears under the number '8', it means one of the steps was not completed correctly and you must return to the Microfactory to recheck each point.\n\n⚠️ If you encounter problems activating the alarm when leaving, please contact the site supervisor (Annelies 0496247323)",
+          "Due to technical problems, we can no longer activate the alarm ourselves.\n\nPlease send a text message to Annelies, the site supervisor, to ask her to activate the alarm at 0496 24 73 23.",
       },
       parking_door_2: {
         text: "Close the gray gate",
@@ -232,27 +232,27 @@ const translations = {
       common_lights_1: {
         text: "Éteindre les lumières dans le coin des espaces communs",
         description:
-          "Tournez tous les interrupteurs du panneau électrique vers la droite (position 0). Ce panneau électrique est situéx dans le coin droit lorsque vous regardez en direction de l'atelier métal.",
+          "Tournez tous les interrupteurs du panneau électrique vers la droite (position 0). Ce panneau électrique est situé dans le coin droit lorsque vous regardez en direction de l'atelier métal.",
       },
       common_lights_2: {
         text: "Éteindre les lumières au milieu des espaces communs",
         description:
-          "Tournez tous les interrupteurs du panneau électrique vers la droite (position 0). Ce panneau électrique est situé au milieu du mur gauche lorsque vous regardez le rideau métalique donnant sur le parking.",
+          "Tournez tous les interrupteurs du panneau électrique vers la droite (position 0). Ce panneau électrique est situé au milieu du mur gauche lorsque vous regardez le rideau métallique donnant sur le parking.",
       },
       common_lights_3: {
-        text: "Éteindre la lumière de la sériographie",
+        text: "Éteindre la lumière de la sérigraphie",
         description:
-          "Appuyez sur l'interrupteur situé a gauche du rideau métalique donnant sur le parking. Cet interrupteur éteint la lumière de la sérigraphie située a droite du rideau métalique.",
+          "Appuyez sur l'interrupteur situé a gauche du rideau métallique donnant sur le parking. Cet interrupteur éteint la lumière de la sérigraphie située a droite du rideau métallique.",
       },
       common_door_2: {
-        text: "Fermer la porte 2 et le rideau métalique",
+        text: "Fermer la porte 2 et le rideau métallique",
         description:
-          "(1) Fermez le rideau métalique appuyant sur la fleche du bas.\n\n(2) Verrouillez la porte.",
+          "(1) Fermez le rideau métallique appuyant sur la fleche du bas.\n\n(2) Verrouillez la porte.",
       },
       common_door_serigraphy: {
-        text: "Fermer la porte de la serographie donnant accès au parking",
+        text: "Fermer la porte de la sérigraphie donnant accès au parking",
         description:
-          'Passez par la porte "LABO PEINTURE", puis fermez la porte de la serographie donnant accès au parking. Il n\'y a pas de verrou, il suffit de laisser la porte se refermer.',
+          'Passez par la porte "LABO PEINTURE", puis fermez la porte de la sérigraphie donnant accès au parking. Il n\'y a pas de verrou, il suffit de laisser la porte se refermer.',
       },
       parking_door_1: {
         text: "Fermer le portail vert",
@@ -262,7 +262,7 @@ const translations = {
       alarm: {
         text: "Activer l'alarme",
         description:
-          "Ouvrez le boitier gris et entrez le code à 4 chiffres suivi de la lettre 'A'. L'ecran affiche alors des chiffres correspondant a des zones. La Microfactory est la zone '8'. Si vous avez effectué tous les points précendents, un 'R' apparait sous le chiffre '8'. Dans ce cas, vous pouvez armer l'alarme en entrant a nouveau le code à 4 chiffres suivi de '8' et 'ent'. Vous avez 90 secondes pour fermer le portail.\n\nSi un 'F' apparait sous le chiffre '8' c'est que l'une des étapes n'est pas correctement effectuée et vous devez retourner dans la Microfactory pour revérifier chaque point.\n\n⚠️ Si vous rencontrez des problèmes pour activer l'alarme en partant, veuillez contacter la surveillante du site (Annelies 0496247323)",
+          "Suite à des problemes techniques, nous ne pouvons plus activer l'alarme nous-même.\n\nVeuillez envoyer un message texte à Annelies, la surveillante du site, pour lui demander d'activer l'alarme au 0496 24 73 23.",
       },
       parking_door_2: {
         text: "Fermer le portail gris",
@@ -273,10 +273,10 @@ const translations = {
 
     // Categories
     categories: {
-      "Wood Workshop": "Atelier Bois",
-      "Metal Workshop": "Atelier Métal",
-      "Common Areas": "Espaces Communs",
-      Security: "Sécurité",
+      "Wood Workshop": "ATELIER BOIS",
+      "Metal Workshop": "ATELIER MÉTAL",
+      "Common Areas": "ESPACES COMMUNS",
+      Security: "SÉCURITÉ",
     },
   },
 
@@ -330,16 +330,15 @@ const translations = {
 
     // Checklist Items
     items: {
-      // TODO: check how to close the shutter
       wood_door_liverpoolstreet: {
-        text: "Sluit de deur en de rolluiken op Liverpool Street",
+        text: "Sluit de deur en de rolluiken van de Liverpoolstraat",
         description:
-          "(1) Sluit het binnenrolluik door op de pijl omlaag te drukken. Als dit niet werkt, zet u de bedieningskast aan door deze op positie 1 in te stellen.\n\n(2) Sluit het buitenrolluik door de sleutel op de bedieningskast op de rechtermuur van rechts naar links te draaien.\n\n(3) Als de deur niet al vergrendeld is, vergrendel deze dan met behulp van de sleutel geplaatst op de bedieningskast voor het sluiten van het buitenrolluik.",
+          "(1) Sluit het binnenrolluik door op de pijl omlaag te drukken. Als dit niet werkt, zet de bedieningskast aan door deze op positie 1 te zetten.\n\n(2) Sluit het buitenrolluik door de sleutel op de bedieningskast aan de rechtermuur naar links te draaien.\n\n(3) Als de deur nog niet vergrendeld is, vergrendel deze dan met de sleutel die op de bedieningskast ligt voor het sluiten van het buitenrolluik.",
       },
       wood_lights_1: {
         text: "Schakel de lichten in het midden van de houtworkshop uit",
         description:
-          "Draai de 3 schakelaars op het elektriciteitsschakelbord naar rechts (positie 0).",
+          "Draai de 3 schakelaars op het elektrische paneel naar rechts (positie 0).",
       },
       wood_lights_2: {
         text: "Schakel de lichten bij de ingang van de houtworkshop uit",
@@ -354,12 +353,12 @@ const translations = {
       metal_back_door: {
         text: "Sluit de deur aan de achterkant van de metaalworkshop",
         description:
-          "Trek de deur stevig en sluit het slot. Zorg ervoor dat het slot volledig is ingeschakeld.",
+          "Trek de deur stevig dicht en sluit de grendel. Zorg ervoor dat de grendel volledig vergrendeld is.",
       },
       metal_lights: {
-        text: "Schakel de lichten in de metaalworkshop uit",
+        text: "Schakel de lichten van de metaalworkshop uit",
         description:
-          "Draai de 2 schakelaars op het elektriciteitsschakelbord naar rechts (positie 0).",
+          "Draai de 2 schakelaars op het elektrische paneel naar rechts (positie 0).",
       },
       metal_door: {
         text: "Sluit de deur en het rolluik van de metaalworkshop",
@@ -368,22 +367,22 @@ const translations = {
       common_door_1: {
         text: "Sluit deur 1 en het witte binnenrolluik",
         description:
-          "(1) Sluit het witte binnenrolluik door op de pijl omlaag te drukken.\n\n(2) Als de sleutel op de deur aanwezig is, vergrendel de deur.",
+          "(1) Sluit het witte binnenrolluik door op de pijl omlaag te drukken.\n\n(2) Als de sleutel aanwezig is op de deur, vergrendel de deur.",
       },
       common_lights_1: {
         text: "Schakel de lichten in de hoek van de gemeenschappelijke ruimtes uit",
         description:
-          "Draai alle schakelaars op het elektriciteitsschakelbord naar rechts (positie 0). Dit elektriciteitsschakelbord bevindt zich in de rechterhoek wanneer u naar de metaalworkshop kijkt.",
+          "Draai alle schakelaars op het elektrische paneel naar rechts (positie 0). Dit elektrische paneel bevindt zich in de rechterhoek wanneer u in de richting van de metaalworkshop kijkt.",
       },
       common_lights_2: {
         text: "Schakel de lichten in het midden van de gemeenschappelijke ruimtes uit",
         description:
-          "Draai alle schakelaars op het elektriciteitsschakelbord naar rechts (positie 0). Dit elektriciteitsschakelbord bevindt zich in het midden van de linkermuur wanneer u naar het metalen rolluik kijkt dat naar de parkeerplaats leidt.",
+          "Draai alle schakelaars op het elektrische paneel naar rechts (positie 0). Dit elektrische paneel bevindt zich in het midden van de linkermuur wanneer u naar het metalen rolluik kijkt dat uitgeeft op de parkeerplaats.",
       },
       common_lights_3: {
-        text: "Schakel het licht van de serigrafiefabriek uit",
+        text: "Schakel het licht van de zeefdrukkerij uit",
         description:
-          "Druk op de schakelaar links van het metalen rolluik dat naar de parkeerplaats leidt. Deze schakelaar schakelt het licht van de serigrafiefabriek rechts van het metalen rolluik uit.",
+          "Druk op de schakelaar links van het metalen rolluik dat uitgeeft op de parkeerplaats. Deze schakelaar schakelt het licht van de zeefdrukkerij rechts van het metalen rolluik uit.",
       },
       common_door_2: {
         text: "Sluit deur 2 en het metalen rolluik",
@@ -391,24 +390,24 @@ const translations = {
           "(1) Sluit het metalen rolluik door op de pijl omlaag te drukken.\n\n(2) Vergrendel de deur.",
       },
       common_door_serigraphy: {
-        text: "Sluit de serigraficdeur die toegang geeft tot de parkeerplaats",
+        text: "Sluit de zeefdrukkerijdeur die toegang geeft tot de parkeerplaats",
         description:
-          'Ga door de deur "VERFLAB", sluit vervolgens de serigraficdeur die toegang geeft tot de parkeerplaats. Er is geen slot, laat de deur gewoon dichtgaan.',
+          'Ga door de deur "LABO PEINTURE", sluit vervolgens de zeefdrukkerijdeur die toegang geeft tot de parkeerplaats. Er is geen slot, laat de deur gewoon dichtvallen.',
       },
       parking_door_1: {
         text: "Sluit het groene hek",
         description:
-          "Voer de code in op het toetsenpaneel en wacht op de bevestigingspiep.",
+          "Voer de code in op het toetsenbord en wacht op de bevestigingspiep.",
       },
       alarm: {
         text: "Activeer het alarm",
         description:
-          "Open de grijze bedieningskast en voer de 4-cijferige code in gevolgd door de letter 'A'. Het scherm geeft dan nummers weer die overeenkomen met zones. De Microfactory is zone '8'. Als u alle vorige stappen hebt voltooid, verschijnt een 'R' onder het getal '8'. In dit geval kunt u het alarm inschakelen door de 4-cijferige code opnieuw in te voeren gevolgd door '8' en 'ent'. U heeft 90 seconden om het hek te sluiten.\n\nAls een 'F' onder het getal '8' verschijnt, betekent dit dat een van de stappen niet correct is voltooid en moet u teruggaan naar de Microfactory om elk punt opnieuw te controleren.\n\n⚠️ Als u problemen ondervindt bij het activeren van het alarm bij vertrek, neem dan contact op met de toezichthouder van de site (Annelies 0496247323)",
+          "Door technische problemen kunnen we het alarm niet meer zelf activeren.\n\nStuur een sms naar Annelies, de toezichthouder van de site, om haar te vragen het alarm te activeren op 0496 24 73 23.",
       },
       parking_door_2: {
         text: "Sluit het grijze hek",
         description:
-          "Voer de code in op het toetsenpaneel en wacht tot het hek volledig is gesloten.",
+          "Voer de code in op het toetsenbord en wacht tot het hek volledig gesloten is.",
       },
     },
 
