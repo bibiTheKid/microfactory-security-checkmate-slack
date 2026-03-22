@@ -121,7 +121,7 @@ const translations = {
       alarm: {
         text: "Activate the alarm",
         description:
-          "Due to technical problems, we can no longer activate the alarm ourselves.\n\nPlease send a text message to Annelies, the site supervisor, to ask her to activate the alarm at 0496 24 73 23.",
+          "Open the gray control box and enter the 4-digit code followed by the letter 'A'.\n\nThe screen will then display numbers from 1 to 8 as well as the letter 'R' (for Ready, indicating that the alarm is ready to be armed) under the number '1' (corresponding to the Microfactory zone).\n\nThen press '1' followed by 'Enter'.\n\nThe alarm is now activated.\n\n⚠️ If an 'F' appears under the number '1', it means there are open doors or someone is still inside.\n\nIf you encounter problems activating the alarm when leaving, please contact the site supervisor (Annelies 0496 24 73 23).",
       },
       parking_door_2: {
         text: "Close the gray gate",
@@ -132,10 +132,10 @@ const translations = {
 
     // Categories
     categories: {
-      "Wood Workshop": "Wood Workshop",
-      "Metal Workshop": "Metal Workshop",
-      "Common Areas": "Common Areas",
-      Security: "Security",
+      "Wood Workshop": "WOOD WORKSHOP",
+      "Metal Workshop": "METAL WORKSHOP",
+      "Common Areas": "COMMON AREAS",
+      Security: "SECURITY",
     },
   },
 
@@ -262,7 +262,7 @@ const translations = {
       alarm: {
         text: "Activer l'alarme",
         description:
-          "Suite à des problemes techniques, nous ne pouvons plus activer l'alarme nous-même.\n\nVeuillez envoyer un message texte à Annelies, la surveillante du site, pour lui demander d'activer l'alarme au 0496 24 73 23.",
+          "Ouvrez le boitier gris et entrez le code à 4 chiffres suivi de la lettre 'A'.\n\nL'ecran affiche alors des chiffres de 1 à 8 ainsi que la lettre 'R' (pour Ready, indiquant que l'alarme est prête à être armée) sous le chiffre '1' (correspondant la zone de la Microfactory).\n\nTapez alors '1' suivi de 'Enter'.\n\nL'alarme est maintenant activée.\n\n⚠️ Si un 'F' apparait sous le chiffre '1', cela signifie qu'il y a des portes ouvertes ou qu'il y a encore quelqu'un à l'intérieur.\n\nSi vous rencontrez des problèmes pour activer l'alarme en partant, veuillez contacter la surveillante du site (Annelies 0496 24 73 23).",
       },
       parking_door_2: {
         text: "Fermer le portail gris",
@@ -402,7 +402,7 @@ const translations = {
       alarm: {
         text: "Activeer het alarm",
         description:
-          "Door technische problemen kunnen we het alarm niet meer zelf activeren.\n\nStuur een sms naar Annelies, de toezichthouder van de site, om haar te vragen het alarm te activeren op 0496 24 73 23.",
+          "Open de grijze bedieningskast en voer de 4-cijferige code in gevolgd door de letter 'A'.\n\nHet scherm toont dan cijfers van 1 tot 8 evenals de letter 'R' (voor Ready, wat aangeeft dat het alarm klaar is om ingeschakeld te worden) onder het cijfer '1' (overeenkomend met de Microfactory zone).\n\nDruk vervolgens op '1' gevolgd door 'Enter'.\n\nHet alarm is nu geactiveerd.\n\n⚠️ Als een 'F' verschijnt onder het cijfer '1', betekent dit dat er deuren open staan of dat er nog iemand binnen is.\n\nAls u problemen ondervindt bij het activeren van het alarm bij vertrek, neem dan contact op met de toezichthouder van de site (Annelies 0496 24 73 23).",
       },
       parking_door_2: {
         text: "Sluit het grijze hek",
@@ -413,10 +413,10 @@ const translations = {
 
     // Categories
     categories: {
-      "Wood Workshop": "Houtworkshop",
-      "Metal Workshop": "Metaalworkshop",
-      "Common Areas": "Gemeenschappelijke Ruimtes",
-      Security: "Beveiliging",
+      "Wood Workshop": "HOUTWORKSHOP",
+      "Metal Workshop": "METAALWORKSHOP",
+      "Common Areas": "GEMEENSCHAPPELIJKE RUIMTES",
+      Security: "BEVEILIGING",
     },
   },
 };
